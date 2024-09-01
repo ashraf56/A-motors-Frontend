@@ -27,7 +27,7 @@ const Header = () => {
                         About us
                     </Link>
                 </Button>
-                <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
+                <Button variant={'ghost'} size={"default"} className="uppercase " >
                     <Link to={'/'}
                     >
                         Booking
