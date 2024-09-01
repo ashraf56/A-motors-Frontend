@@ -1,15 +1,13 @@
 import whyus from '@/assets/whyus.jpg'
-import { Separator } from '../ui/separator';
+import Title from '../Reusable/Title';
 
 const Whyus = () => {
     return (
         <div className='py-10'>
             <div className=" font-CustomFont " >
-                <h1 className="uppercase text-center text-3xl font-bold ">Why Choose US ?</h1>
-                
-                <Separator className="my-2 w-40 rounded-full mx-auto h-1 bg-black" />
+                <Title name={'Why Choose US ?'} />
 
-                <div className='block lg:flex justify-center items-center mx-auto gap-2 w-full lg:max-w-full'>
+                <div className='block lg:flex justify-center pt-10 items-center mx-auto gap-2 w-full lg:max-w-full'>
                     <div className='w-full lg:w-1/2 px-2'>
                         <h3 className='text-xl font-bold pb-2'>Best Prices Guaranteed</h3>
                         <p>

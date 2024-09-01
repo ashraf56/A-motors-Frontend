@@ -5,8 +5,8 @@ import menu from '@/assets/menus.svg'
 import logo from '@/assets/logo.png'
 const Header = () => {
     return (
-        <div>
-              <header className="flex h-14 w-full shrink-0 items-center bg-black  px-4 md:px-6  font-CustomFont">
+      
+              <header className="flex h-14 w-full shrink-0 items-center sticky top-0 z-30 bg-black  px-4 md:px-6  font-CustomFont">
             <Link to={'/'} className="mr-6 flex">
                 <div className="flex flex-row items-center justify-center gap-2 ">
                     <div><img src={logo} width={30} height={30} /></div>
@@ -95,7 +95,7 @@ const Header = () => {
 
 
         </header>
-        </div>
+      
     );
 };
 

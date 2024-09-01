@@ -1,3 +1,4 @@
+import CustomerTestimonial from "@/components/HomepageCompo/CustomerTestimonial";
 import Hero from "@/components/HomepageCompo/Hero";
 import Whyus from "@/components/HomepageCompo/Whyus";
 
@@ -7,6 +8,7 @@ const Home = () => {
           
      <Hero></Hero>
      <Whyus/>
+     <CustomerTestimonial/>
         </div>
     );
 };
