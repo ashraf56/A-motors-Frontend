@@ -5,22 +5,25 @@ import {
     PAUSE,
     PERSIST,
     PURGE,
-    REGISTER
+    REGISTER,
+    persistReducer
 } from "redux-persist";
 import { baseApi } from './api/baseApi';
+import storage from 'redux-persist/lib/storage';
+import authSlice from './feature/auth/authSlice';
 
-// const configPersistor = {
-//     key: 'auth',
-//     storage
-// }
+const configPersistor = {
+    key: 'auth',
+    storage
+}
 
 
-
+const persistedUser = persistReducer(configPersistor, authSlice)
 
 export const store = configureStore({
     reducer: {
         [baseApi.reducerPath]: baseApi.reducer,
-       
+        auth: persistedUser
 
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
