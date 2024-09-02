@@ -39,6 +39,12 @@ const Header = () => {
                        Contact
                     </Link>
                 </Button>
+                <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
+                    <Link to={'/signup'}
+                    >
+                       Signup
+                    </Link>
+                </Button>
 
 
 
