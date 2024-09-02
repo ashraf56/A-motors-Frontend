@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -8,7 +9,12 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useLoginUserMutation } from "@/redux/feature/auth/authApi";
+import { setUser } from "@/redux/feature/auth/authSlice";
+import { useAppDispatch } from "@/redux/hook";
+import { tokenVerify } from "@/utills/Tokenverify";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const Login = () => {
     const {
@@ -17,7 +23,27 @@ const Login = () => {
         formState: { errors },
     } = useForm()
 
-    const onsubmit: SubmitHandler<FieldValues> = (data) => console.log(data)
+    const dispatch = useAppDispatch()
+    const [loginUser, { data }] = useLoginUserMutation()
+    console.log(data);
+
+    const onsubmit: SubmitHandler<FieldValues> = async (data) => {
+
+        const toast1 = toast.loading('loading...', { duration: 2000 })
+        try {
+            const res = await loginUser(data).unwrap()
+            const user = tokenVerify(res.data.token) as any
+            dispatch(setUser({ user: user, token: res.data.token }))
+
+            toast.success('Logged in', { id: toast1, duration: 2000 });
+
+
+        } catch (error) {
+            toast.error('Log in faild', { id: toast1, duration: 2000 });
+        }
+
+
+    }
     return (
         <div className="flex flex-col justify-center items-center h-[80vh] my-10 md:my-0">
             <Card className="w-full max-w-lg">
