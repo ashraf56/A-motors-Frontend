@@ -40,6 +40,12 @@ const Header = () => {
                     </Link>
                 </Button>
                 <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
+                    <Link to={'/login'}
+                    >
+                       Login
+                    </Link>
+                </Button>
+                <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
                     <Link to={'/signup'}
                     >
                        Signup

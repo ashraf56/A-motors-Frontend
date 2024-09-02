@@ -6,7 +6,7 @@ const Title = ({ name }: any) => {
         <div>
             <h1 className="uppercase text-center text-3xl font-bold ">{name}</h1>
 
-            <Separator className="my-2 w-40 rounded-full mx-auto h-1 bg-[#708090]" />
+            <Separator className="my-2 w-40 rounded-full mx-auto h-1 bg-[#BC274B]" />
 
         </div>
     );
