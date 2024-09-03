@@ -3,10 +3,15 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTrigger } from
 import { Link } from "react-router-dom";
 import menu from '@/assets/menus.svg'
 import logo from '@/assets/logo.png'
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { logout, useCurrentToken } from "@/redux/feature/auth/authSlice";
 const Header = () => {
+    const dispatch = useAppDispatch()
+    const user = useAppSelector(useCurrentToken)
+
     return (
-      
-              <header className="flex h-14 w-full shrink-0 items-center sticky top-0 z-30 bg-black  px-4 md:px-6  font-CustomFont">
+
+        <header className="flex h-14 w-full shrink-0 items-center sticky top-0 z-30 bg-black  px-4 md:px-6  font-CustomFont">
             <Link to={'/'} className="mr-6 flex">
                 <div className="flex flex-row items-center justify-center gap-2 ">
                     <div><img src={logo} width={30} height={30} /></div>
@@ -36,26 +41,34 @@ const Header = () => {
                 <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
                     <Link to={'/'}
                     >
-                       Contact
+                        Contact
                     </Link>
                 </Button>
-                <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
-                    <Link to={'/login'}
-                    >
-                       Login
-                    </Link>
-                </Button>
-                <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
-                    <Link to={'/signup'}
-                    >
-                       Signup
-                    </Link>
-                </Button>
+                {user ?
+                    <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" onClick={() => dispatch(logout())}>
+
+
+                        Logout
+
+                    </Button>
+                    :
+                    <> <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
+                        <Link to={'/login'}
+                        >
+                            Login
+                        </Link>
+                    </Button>
+                        <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
+                            <Link to={'/signup'}
+                            >
+                                Signup
+                            </Link>
+                        </Button></>}
 
 
 
             </nav>
-           
+
 
 
 
@@ -98,7 +111,7 @@ const Header = () => {
 
 
                             </nav>
-                            
+
                         </SheetDescription>
                     </SheetHeader>
 
@@ -107,7 +120,7 @@ const Header = () => {
 
 
         </header>
-      
+
     );
 };
 
