@@ -19,7 +19,7 @@ import { toast } from "sonner";
 const Login = () => {
     const {
         register,
-        handleSubmit,
+        handleSubmit, reset,
         formState: { errors },
     } = useForm()
 
@@ -33,10 +33,13 @@ const Login = () => {
         try {
             const res = await loginUser(data).unwrap()
             const user = tokenVerify(res.data.token) as any
-            dispatch(setUser({ user: user, token: res.data.token }))
 
-            toast.success('Logged in', { id: toast1, duration: 2000 });
 
+            if (res) {
+                dispatch(setUser({ user: user, token: res.data.token }))
+                toast.success('Logged in', { id: toast1, duration: 2000 });
+            }
+            reset()
 
         } catch (error) {
             toast.error('Log in faild', { id: toast1, duration: 2000 });
