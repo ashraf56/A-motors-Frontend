@@ -1,6 +1,7 @@
 import App from "@/App";
 import Login from "@/components/Authpage/Login";
 import Signup from "@/components/Authpage/Signup";
+import Aboutus from "@/page/Aboutus";
 import Home from "@/page/Home";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login />
+            },
+            {
+                path: '/aboutus',
+                element: <Aboutus />
             },
         ]
     }
