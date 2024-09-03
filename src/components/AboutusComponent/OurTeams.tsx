@@ -26,12 +26,12 @@ const team = [
 
 const OurTeams = () => {
     return (
-        <div className="container  font-CustomFont my-5 mx-auto">
+        <div className="container  font-CustomFont my-10 mx-auto">
             <Title name='Our Key Members' />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mx-auto px-4 py-5">
                 {
                     team.map(t => (
-                        <Card className=' w-full md:max-w-lg lg:max-w-2xl  xl:max-w-full h-auto text-center'>
+                        <Card className=' w-[350px] mx-auto   h-auto text-center'>
 
                             <CardHeader>
                                 <Avatar className="w-full ">
