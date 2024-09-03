@@ -1,5 +1,5 @@
 
-import mission from '@/assets/values.jpg'
+import val from '@/assets/values.jpg'
 import Title from '../Reusable/Title';
 
 const Valuescomitment = () => {
@@ -29,7 +29,7 @@ const Valuescomitment = () => {
 
                 </div>
                 <div>
-                    <img src={mission} alt="mission" className='w-96' />
+                    <img src={val} alt="val" className='w-96 mx-auto' />
                 </div>
             </div>
         </div>
