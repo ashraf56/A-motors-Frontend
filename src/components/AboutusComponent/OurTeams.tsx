@@ -28,7 +28,7 @@ const OurTeams = () => {
     return (
         <div className="container  font-CustomFont my-10 mx-auto">
             <Title name='Our Key Members' />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mx-auto px-4 py-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mx-auto px-4 py-10">
                 {
                     team.map(t => (
                         <Card className=' w-[350px] mx-auto   h-auto text-center'>
