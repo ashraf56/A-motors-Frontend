@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useSignUpUserMutation } from "@/redux/feature/auth/authApi";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 
@@ -53,7 +54,7 @@ const Signup = () => {
 
     }
     return (
-        <div className="flex flex-col justify-center items-center h-[100vh] my-10 md:my-0">
+        <div className="flex flex-col justify-center font-CustomFont items-center h-[100vh] my-10 md:my-0">
             <Card className="w-full max-w-lg">
                 <CardHeader>
                     <CardTitle>Sign Up</CardTitle>
@@ -116,6 +117,9 @@ const Signup = () => {
                                 <Input id="address" placeholder="enter phone address" {...register('address')} />
                             </div>
 
+                            <div className="text-sm"                            >
+                                <p>Don't have any account? <Link to={'/login'}>Log in now</Link></p>
+                            </div>
                             <div className="flex items-center space-x-2 ">
                                 <Input id="terms"
                                     type="checkbox"
@@ -137,6 +141,7 @@ const Signup = () => {
                             </div>
                             {errors.terms && <span className="text-sm text-red-700">
                                 {errors.terms?.message as string} </span>}
+                              
                         </div>
 
                         <CardFooter className="flex justify-center mt-10">

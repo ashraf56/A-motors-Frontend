@@ -14,6 +14,7 @@ import { setUser } from "@/redux/feature/auth/authSlice";
 import { useAppDispatch } from "@/redux/hook";
 import { tokenVerify } from "@/utills/Tokenverify";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 const Login = () => {
@@ -48,7 +49,7 @@ const Login = () => {
 
     }
     return (
-        <div className="flex flex-col justify-center items-center h-[80vh] my-10 md:my-0">
+        <div className="flex flex-col justify-center font-CustomFont items-center h-[80vh] my-10 md:my-0">
             <Card className="w-full max-w-lg">
                 <CardHeader>
                     <CardTitle>Log in now</CardTitle>
@@ -80,6 +81,9 @@ const Login = () => {
                                     },
                                 })} />
                                 {errors.password && <span className="text-sm text-red-700"> {errors.password?.message as string} </span>}
+                            </div>
+                            <div className="text-sm">
+                                <p>Don't have any account? <Link to={'/signup'}>Sign up now</Link></p>
                             </div>
 
 

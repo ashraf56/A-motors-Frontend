@@ -26,7 +26,7 @@ const Header = () => {
                         Home
                     </Link>
                 </Button>
-                <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent"  >
+                <Button variant={'ghost'} size={"default"} className="uppercase "  >
                     <Link to={'/aboutus'}
                     >
                         About us
@@ -38,32 +38,27 @@ const Header = () => {
                         Booking
                     </Link>
                 </Button>
-                <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
+                <Button variant={'ghost'} size={"default"} className="uppercase " >
                     <Link to={'/'}
                     >
                         Contact
                     </Link>
                 </Button>
                 {user ?
-                    <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" onClick={() => dispatch(logout())}>
+                    <Button variant={'ghost'} size={"default"} className="uppercase" onClick={() => dispatch(logout())}>
 
 
                         Logout
 
                     </Button>
                     :
-                    <> <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
+                    <Button variant={'ghost'} size={"default"} className="uppercase" >
                         <Link to={'/login'}
                         >
                             Login
                         </Link>
                     </Button>
-                        <Button variant={'ghost'} size={"default"} className="uppercase bg-transparent hover:bg-transparent" >
-                            <Link to={'/signup'}
-                            >
-                                Signup
-                            </Link>
-                        </Button></>}
+                }
 
 
 
