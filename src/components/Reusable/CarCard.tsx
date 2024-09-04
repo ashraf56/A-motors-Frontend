@@ -17,7 +17,8 @@ const CarCard = (fc:any) => {
                     <div className="mx-auto">
                         <img src={fc.image} alt="" className="min-h-full h-52 mb-2 rounded-lg" />
                     </div>
-                    <CardTitle>${fc.price}</CardTitle>
+                    <CardTitle>{fc.name}</CardTitle>
+                    <p>${fc.pricePerHour}</p>
                     <CardDescription >{fc.description}</CardDescription>
                 </CardHeader>
                 <CardFooter className=" ">
