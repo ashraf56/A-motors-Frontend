@@ -30,13 +30,13 @@ const fleetData = [
 const OurFleet = () => {
     return (
         <div className="font-CustomFont flex flex-col bg-gradient-to-r from-[#ebf4f5] to-[#d3f3f1] py-10">
-            <Title name='OurFleet'/>
+            <Title name='Our Fleet'/>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:grid-cols-3 mx-auto px-4 py-10">
                 {
                     fleetData.map(t => (
-                        <Card className=' w-[300px] mx-auto   h-auto text-center'>
+                        <Card className=' w-[300px] mx-auto   h-auto '>
 
-                            <CardHeader>
+                            <CardHeader className="flex">
                                 <Avatar className="w-full ">
                                     
                                 </Avatar>

@@ -29,7 +29,7 @@ const Valuescomitment = () => {
 
                 </div>
                 <div>
-                    <img src={val} alt="val" className='w-96 mx-auto' />
+                    <img src={val} alt="val" className='w-96 mx-auto rounded-2xl' />
                 </div>
             </div>
         </div>
