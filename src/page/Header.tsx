@@ -33,9 +33,9 @@ const Header = () => {
                     </Link>
                 </Button>
                 <Button variant={'ghost'} size={"default"} className="uppercase " >
-                    <Link to={'/'}
+                    <Link to={'/carlist'}
                     >
-                        Booking
+                        Car List
                     </Link>
                 </Button>
                 <Button variant={'ghost'} size={"default"} className="uppercase " >
