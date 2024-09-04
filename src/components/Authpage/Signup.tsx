@@ -118,7 +118,7 @@ const Signup = () => {
                             </div>
 
                             <div className="text-sm"                            >
-                                <p>Don't have any account? <Link to={'/login'}>Log in now</Link></p>
+                                <p>Already have an account? <Link to={'/login'}>Log in now</Link></p>
                             </div>
                             <div className="flex items-center space-x-2 ">
                                 <Input id="terms"
