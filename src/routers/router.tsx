@@ -1,6 +1,7 @@
 import App from "@/App";
 import Login from "@/components/Authpage/Login";
 import Signup from "@/components/Authpage/Signup";
+import CarDetails from "@/components/CarlistingCompo/CarDetails";
 import Aboutus from "@/page/Aboutus";
 import Carlist from "@/page/Carlist";
 import Home from "@/page/Home";
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
             {
                 path: '/carlist',
                 element: <Carlist />
+            },
+            {
+                path: '/carlist/:id',
+                element: <CarDetails />
             },
         ]
     }

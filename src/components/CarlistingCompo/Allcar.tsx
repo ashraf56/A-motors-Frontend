@@ -3,9 +3,11 @@ import { useGetallCarsQuery } from "@/redux/feature/cars/carsApi";
 import CarCard from "../Reusable/CarCard";
 
 const Allcar = () => {
-    const { data } = useGetallCarsQuery(undefined)
+    const { data,isLoading } = useGetallCarsQuery(undefined)
     console.log(data);
-
+if (isLoading) {
+    return <p>Loading...</p>
+}
     return (
         <div className="font-CustomFont flex flex-col justify-center items-center my-9">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mx-auto gap-2">

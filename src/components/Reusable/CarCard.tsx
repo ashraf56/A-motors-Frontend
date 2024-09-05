@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const CarCard = (fc:any) => {
     return (
         <div>
-             <div >
+             <div className="h-full" >
             <Card className=" w-full md:w-[350px] h-full   font-CustomFont ">
                 <CardHeader>
                     <div className="mx-auto">
@@ -19,11 +19,11 @@ const CarCard = (fc:any) => {
                     </div>
                     <CardTitle>{fc.name}</CardTitle>
                     <p>${fc.pricePerHour}</p>
-                    <CardDescription >{fc.description}</CardDescription>
+                    <CardDescription >{fc.description.slice(0,100)}</CardDescription>
                 </CardHeader>
                 <CardFooter className=" ">
                     <Button variant={'outline'}>
-                        <Link to={`/`}>View Detail</Link>
+                        <Link to={`/carlist/${fc._id}`}>View Detail</Link>
                     </Button>
                 </CardFooter>
             </Card>

@@ -7,7 +7,10 @@ import Title from "../Reusable/Title";
 
 
 const FeatureCar = () => {
-    const { data } = useGetallCarsQuery(undefined)
+    const { data,isLoading } = useGetallCarsQuery(undefined)
+    if (isLoading) {
+        return <p>loading..</p>
+    }
     return (
         <div className="font-CustomFont my-5 py-10 mx-auto flex flex-col space-y-4 ">
             <Title name={'Feature Cars'} />
