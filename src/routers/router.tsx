@@ -1,4 +1,5 @@
 import App from "@/App";
+import Auth from "@/Auth";
 import Login from "@/components/Authpage/Login";
 import Signup from "@/components/Authpage/Signup";
 import CarDetails from "@/components/CarlistingCompo/CarDetails";
@@ -19,14 +20,6 @@ export const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: '/signup',
-                element: <Signup />
-            },
-            {
-                path: '/login',
-                element: <Login />
-            },
-            {
                 path: '/aboutus',
                 element: <Aboutus />
             },
@@ -39,7 +32,22 @@ export const router = createBrowserRouter([
                 element: <CarDetails />
             },
         ]
-    }
+    },
+    {
+        path: '/',
+        element: <Auth />,
+        children: [
+            {
+                path: '/signup',
+                element: <Signup />
+            },
+            {
+                path: '/login',
+                element: <Login />
+            },
+        ]
+    },
+    
 ])
 
 

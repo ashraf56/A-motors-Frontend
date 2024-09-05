@@ -44,11 +44,11 @@ const customerReviews = [
 
 const CustomerTestimonial = () => {
     return (
-        <div className="font-CustomFont py-10 bg-gradient-to-r from-[#ebf4f5] to-[#d3f3f1]">
+        <div className="font-CustomFont py-10 ">
             <Title name={'Customer Testimonials'} />
 
             <Carousel
-                className="w-full max-w-full font-CustomFont overflow-x-hidden md:overflow-visible  md:max-w-2xl  mx-auto pt-10">
+                className="w-full max-w-full font-CustomFont overflow-x-hidden md:overflow-visible  md:max-w-2xl  mx-auto pt-10" >
                 <CarouselContent  >
                     {customerReviews.map(({ id, name, comment, rating, date }) => (
                         <CarouselItem key={id}  >

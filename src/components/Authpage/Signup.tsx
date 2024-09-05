@@ -55,7 +55,7 @@ const Signup = () => {
     }
     return (
         <div className="flex flex-col justify-center font-CustomFont items-center h-[100vh] my-10 md:my-0">
-            <Card className="w-full max-w-lg">
+            <Card className="w-full max-w-lg border-none shadow-none">
                 <CardHeader>
                     <CardTitle>Sign Up</CardTitle>
                 </CardHeader>
