@@ -10,6 +10,13 @@ const carsApi = baseApi.injectEndpoints({
             }),
             providesTags: ['cars']
         }),
+        getallavailableCars: build.query({
+            query: () => ({
+                url: 'cars/available-car',
+                method: "GET"
+            }),
+            providesTags: ['cars']
+        }),
         getSingleCars: build.query({
             query: (slug: string) => ({
                 url: `cars/${slug}`,
@@ -22,4 +29,4 @@ const carsApi = baseApi.injectEndpoints({
 })
 
 
-export const {useGetSingleCarsQuery,useGetallCarsQuery} = carsApi
+export const {useGetSingleCarsQuery,useGetallCarsQuery,  useGetallavailableCarsQuery} = carsApi

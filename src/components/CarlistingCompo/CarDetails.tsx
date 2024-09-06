@@ -98,7 +98,8 @@ const CarDetails = () => {
                             {data?.data?.status === 'available' ? <p className="text-green-600 text-sm">car is {data?.data?.status}</p> :
                                 <p className="text-red-600 text-sm"> car is  {data?.data?.status}</p>
                             }
-                        </div>  <Button size={'default'} className=" bg-[#BC274B]  font-CustomFont" >Book now</Button>
+                        </div> <Link to={'/booking'}><Button size={'default'} className=" bg-[#BC274B]  font-CustomFont" >Book now</Button>
+                        </Link> 
                     </div>
 
 
