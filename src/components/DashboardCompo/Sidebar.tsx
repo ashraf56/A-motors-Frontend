@@ -11,7 +11,7 @@ const Sidebar = () => {
     const user: any = useAppSelector(useCurrentUser)
     return (
         <div>
-            <div className={` h-screen bg-slate-200 font-CustomFont text-black p-5 border-r-2 border-content1-foreground ${open ? 'w-60' : 'w-20 '} relative duration-300`}>
+            <div className={` h-screen bg-gradient-to-b from-[#ebf4f5] to-[#d3f3f1] font-CustomFont text-black p-5 border-r-2 border-content1-foreground ${open ? 'w-60' : 'w-20 '} relative duration-300`}>
 
                 {!open ?
                     <div className='w-11'>
@@ -20,7 +20,7 @@ const Sidebar = () => {
                     :
                     <div className={`${open ? '' : 'hidden'} gap-2 items-center flex`}>
                         <img src={logo} width={50} height={50} alt='logo2' onClick={() => Setopen(!open)} />
-                        <div onClick={() => Setopen(!open)}><h1 className=" font-CustomFont font-extrabold">A -motores</h1></div>
+                        <div onClick={() => Setopen(!open)}><h1 className=" font-CustomFont font-extrabold">A -Motors</h1></div>
                     </div>
                 }
 
@@ -29,24 +29,24 @@ const Sidebar = () => {
                     {
                         (user!.role === 'admin') ?
                             adminroutes?.map(l => (
-                                <li key={l?.id} className=' flex gap-2 font-CustomFont  items-center hover:bg-primary-300 p-2 mt-2 rounded-md'>
+                                <li key={l?.id} className=' flex gap-2 font-CustomFont  items-center hover:bg-slate-300 p-2 mt-2 rounded-md text-sm '>
                                     <Link to={l?.route} className=' flex gap-2 items-center '>
-                                        <span className={`${!open && 'hidden'}`}> {l?.name}</span>
+                                        <span className={`${!open && 'hidden'} px-2`}> {l?.name}</span>
                                     </Link>
                                 </li>
                             )) :
                             userRoutes?.map(l => (
-                                <li key={l?.id} className=' flex gap-2 font-CustomFont  items-center hover:bg-primary-300 p-2 mt-2 rounded-md'>
+                                <li key={l?.id} className=' flex gap-2 font-CustomFont  items-center hover:bg-slate-300 p-2 mt-2 rounded-md text-sm'>
                                     <Link to={l?.route} className=' flex gap-2 items-center '>
-                                        <span className={`${!open && 'hidden'}`}> {l?.name}</span>
+                                        <span className={`${!open && 'hidden'}  px-2`}> {l?.name}</span>
                                     </Link>
                                 </li>
                             ))
                     }
 
-                    <li className=' flex gap-2 font-CustomFont  items-center hover:bg-primary-300 p-2 mt-2 rounded-md'>
+                    <li className=' flex gap-2 font-CustomFont  items-center  p-2 mt-2 rounded-md hover:bg-slate-300 text-sm'>
                         <Link to={'/'} className=' flex gap-2 items-center '>
-                            <span className={`${!open && 'hidden'}`}> Back to Home</span>
+                            <span className={`${!open && 'hidden'} px-2`}> Back to Home</span>
                         </Link>
                     </li>
 

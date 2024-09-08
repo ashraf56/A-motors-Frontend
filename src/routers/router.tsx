@@ -14,6 +14,7 @@ import UserOverview from "@/components/DashboardCompo/user/UserOverview";
 import ProtectedAdmin from "@/components/Protectedroute/ProtectedAdmin";
 import ProtectedRoute from "@/components/Protectedroute/ProtectedRoute";
 import Dashboard from "@/Dashboard";
+import Error4O4 from "@/Error4O4";
 import Aboutus from "@/page/Aboutus";
 import Booking from "@/page/Booking";
 import Carlist from "@/page/Carlist";
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <App />,
+        errorElement:<Error4O4/>,
         children: [
             {
                 path: '',
@@ -52,6 +54,7 @@ export const router = createBrowserRouter([
     {
         path: '/',
         element: <Auth />,
+        errorElement:<Error4O4/>,
         children: [
             {
                 path: '/signup',
@@ -67,6 +70,7 @@ export const router = createBrowserRouter([
     {
         path: 'dashboard',
         element: <ProtectedRoute><Dashboard /></ProtectedRoute> ,
+        errorElement:<Error4O4/>,
         children: [
             {
                 
