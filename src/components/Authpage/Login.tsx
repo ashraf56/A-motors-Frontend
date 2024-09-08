@@ -14,7 +14,7 @@ import { setUser } from "@/redux/feature/auth/authSlice";
 import { useAppDispatch } from "@/redux/hook";
 import { tokenVerify } from "@/utills/Tokenverify";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 const Login = () => {
     const {
@@ -22,6 +22,7 @@ const Login = () => {
         handleSubmit, reset,
         formState: { errors },
     } = useForm()
+    const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
     const [loginUser, { data }] = useLoginUserMutation()
@@ -39,6 +40,8 @@ const Login = () => {
                 dispatch(setUser({ user: user, token: res.data.token }))
                 toast.success('Logged in', { id: toast1, duration: 2000 });
             }
+
+            navigate(`/dashboard/${user?.role}/overview`)
             reset()
 
         } catch (error) {

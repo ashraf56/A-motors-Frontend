@@ -11,6 +11,7 @@ import UserManegment from "@/components/DashboardCompo/admin/UserManegment";
 import PaymentManegment from "@/components/DashboardCompo/user/PaymentManegment";
 import Userbooking from "@/components/DashboardCompo/user/Userbooking";
 import UserOverview from "@/components/DashboardCompo/user/UserOverview";
+import ProtectedAdmin from "@/components/Protectedroute/ProtectedAdmin";
 import ProtectedRoute from "@/components/Protectedroute/ProtectedRoute";
 import Dashboard from "@/Dashboard";
 import Aboutus from "@/page/Aboutus";
@@ -65,38 +66,38 @@ export const router = createBrowserRouter([
     
     {
         path: 'dashboard',
-        element: <Dashboard />,
+        element: <ProtectedRoute><Dashboard /></ProtectedRoute> ,
         children: [
             {
                 
-                path:'admin/admin-overview',
-                element:<AdminOverview/>
+                path:'admin/overview',
+                element: <ProtectedAdmin><AdminOverview/></ProtectedAdmin>
             },
             {
                
                 path:'admin/manage-booking',
-                element:<ManageBooking/>
+                element:<ProtectedAdmin><ManageBooking/></ProtectedAdmin>
             },
             {
                
                 path:'admin/manage-car',
-                element:<MangeCar/>
+                element:<ProtectedAdmin><MangeCar/></ProtectedAdmin>
             },
             {
                 
                 path:'admin/manage-return-car',
-                element:<ManageReturnCar/>
+                element:<ProtectedAdmin><ManageReturnCar/></ProtectedAdmin>
             },
             {
                 
                 path:'admin/user-management',
-                element:<UserManegment/>
+                element:<ProtectedAdmin><UserManegment/></ProtectedAdmin>
             },
             
         
             {
                 
-                path:'user/user-overview',
+                path:'user/overview',
                 element:<UserOverview/>
             },
             {

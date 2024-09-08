@@ -4,7 +4,7 @@ export const userRoutes = [
     {
         id: 1,
         name: 'Overview',
-        route: 'user/user-overview',
+        route: 'user/overview',
 
     },
     {

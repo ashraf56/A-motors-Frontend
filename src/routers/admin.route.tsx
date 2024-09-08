@@ -4,7 +4,7 @@ export const adminroutes = [
     {
         id: 1,
         name: 'Overview',
-        route: 'admin/admin-overview',
+        route: 'admin/overview',
 
     },
     {

@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import menu from '@/assets/menus.svg'
 import logo from '@/assets/logo.png'
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
-import { logout, useCurrentToken } from "@/redux/feature/auth/authSlice";
+import { logout, useCurrentToken, useCurrentUser } from "@/redux/feature/auth/authSlice";
 const Header = () => {
     const dispatch = useAppDispatch()
     const user = useAppSelector(useCurrentToken)
+    const UserRole: string | any = useAppSelector(useCurrentUser)
 
     return (
 
@@ -38,12 +40,12 @@ const Header = () => {
                         Car List
                     </Link>
                 </Button>
-                <Button variant={'ghost'} size={"default"} className="uppercase " >
-                    <Link to={'/'}
+                {user && <Button variant={'ghost'} size={"default"} className="uppercase " >
+                    <Link to={`/dashboard/${UserRole?.role}/overview`}
                     >
-                        Contact
+                        Dashboard
                     </Link>
-                </Button>
+                </Button>}
                 {user ?
                     <Button variant={'ghost'} size={"default"} className="uppercase" onClick={() => dispatch(logout())}>
 
@@ -96,13 +98,27 @@ const Header = () => {
                                         Booking
                                     </Link>
                                 </Button>
-                                <Button variant={'outline'} size={"default"} >
-                                    <Link to={'/'}
+                                {user && <Button variant={'outline'} size={"default"} className="uppercase " >
+                                    <Link to={`/dashboard/${UserRole?.role}/overview`}
                                     >
-                                        Contact
+                                        Dashboard
                                     </Link>
-                                </Button>
+                                </Button>}
+                                {user ?
+                                    <Button variant={'outline'} size={"default"} className="uppercase" onClick={() => dispatch(logout())}>
 
+
+                                        Logout
+
+                                    </Button>
+                                    :
+                                    <Button variant={'outline'} size={"default"} className="uppercase" >
+                                        <Link to={'/login'}
+                                        >
+                                            Login
+                                        </Link>
+                                    </Button>
+                                }
 
 
                             </nav>
