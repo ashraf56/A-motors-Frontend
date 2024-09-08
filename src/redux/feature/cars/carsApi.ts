@@ -1,12 +1,18 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { baseApi } from "@/redux/api/baseApi";
 
 
 const carsApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
         getallCars: build.query({
-            query: () => ({
-                url: 'cars',
-                method: "GET"
+            query: (searchTerm) =>({
+
+                    url: 'cars',
+                    method: "GET",
+                    params: {
+                        search: searchTerm || '',
+                    }
+
             }),
             providesTags: ['cars']
         }),
@@ -29,4 +35,4 @@ const carsApi = baseApi.injectEndpoints({
 })
 
 
-export const {useGetSingleCarsQuery,useGetallCarsQuery,  useGetallavailableCarsQuery} = carsApi
+export const { useGetSingleCarsQuery, useGetallCarsQuery, useGetallavailableCarsQuery, useLazyGetallCarsQuery } = carsApi

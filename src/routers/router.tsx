@@ -4,6 +4,7 @@ import Login from "@/components/Authpage/Login";
 import Signup from "@/components/Authpage/Signup";
 import CarDetails from "@/components/CarlistingCompo/CarDetails";
 import ProtectedRoute from "@/components/Protectedroute/ProtectedRoute";
+import Dashboard from "@/Dashboard";
 import Aboutus from "@/page/Aboutus";
 import Booking from "@/page/Booking";
 import Carlist from "@/page/Carlist";
@@ -51,6 +52,14 @@ export const router = createBrowserRouter([
                 path: '/login',
                 element: <Login />
             },
+        ]
+    },
+    
+    {
+        path: '/dashboard',
+        element: <Dashboard />,
+        children: [
+           
         ]
     },
     

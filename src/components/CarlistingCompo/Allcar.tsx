@@ -2,9 +2,12 @@
 import { useGetallCarsQuery } from "@/redux/feature/cars/carsApi";
 import CarCard from "../Reusable/CarCard";
 
+
 const Allcar = () => {
-    const { data,isLoading } = useGetallCarsQuery(undefined)
-    console.log(data);
+  const { data,isLoading } = useGetallCarsQuery(undefined)
+  
+   
+   
 if (isLoading) {
     return <p>Loading...</p>
 }
