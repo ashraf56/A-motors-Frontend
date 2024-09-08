@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/table"
 import { useGetallCarsQuery } from '@/redux/feature/cars/carsApi';
 import { Button } from '@/components/ui/button';
+import CreateCar from './CreateCar';
 const MangeCar = () => {
     const { data, isLoading } = useGetallCarsQuery(undefined, { pollingInterval: 1000 })
 
@@ -26,7 +27,7 @@ const MangeCar = () => {
        </div>
       <div className='flex flex-col my-5 w-full container gap-4'>
         <div className=' flex justify-end  w-full'>
-          <Button>Cerate a Car</Button>
+          <CreateCar/>
         </div>
 
 
