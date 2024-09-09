@@ -17,12 +17,17 @@ import makeAnimated from 'react-select/animated';
 import { carCategories, carFeatures } from "../Constant/constant";
 import { useState } from "react";
 import { ImageUplodonCloudinery } from "@/utills/ImageUplodonCloudinery";
+import { useCreateACarMutation } from "@/redux/feature/cars/carsApi";
+import { toast } from "sonner";
 
 
 const animatedComponents = makeAnimated();
 
 const CreateCar = () => {
     const [selectFeature, setSelectFeature] = useState([])
+
+    const [CreateACar, {data}] = useCreateACarMutation()
+console.log(data);
 
     const handleOnchange = (soption: any) => {
         setSelectFeature(soption)
@@ -40,16 +45,28 @@ const CreateCar = () => {
         const carinfo = {
             name: data.name,
             description: data.description,
-            pricePerHour: data.pricePerHour,
+            pricePerHour: Number(data.pricePerHour),
             image: uploadedImageUrl,
+            color:data.color,
             carType: data.carType,
             features: data.select,
-            isDeleted: 'false',
-            isElectric: data.isElectric
+            status:'available',
+            isDeleted: false,
+            isElectric: Boolean(data.isElectric)
         }
-        console.log(carinfo);
-   
+        const toast1 = toast.loading('loading...')
+       try {
+        const res = await CreateACar(carinfo)
+
+        if (res) {
+            toast.success('Car info Created', { id: toast1 , duration:2000});
+        }
         reset()
+
+       } catch (error) {
+        toast.error('Something wrong', { id: toast1, duration:2000 });
+       }
+       
     }
 
     return (
@@ -83,7 +100,7 @@ const CreateCar = () => {
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label className="text-right">
-                                    Price
+                                    Price Per Hour
                                 </Label>
                                 <Input type="number" {...register('pricePerHour')} className="col-span-3" />
                             </div>

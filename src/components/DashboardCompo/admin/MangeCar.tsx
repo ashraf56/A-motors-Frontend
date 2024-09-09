@@ -32,7 +32,7 @@ const MangeCar = () => {
 
 
       </div>
-      <div className='w-full max-w-5xl mx-auto'>
+      <div className='w-full max-w-5xl mx-auto h-96 overflow-y-scroll'>
         <Table>
           <TableHeader>
             <TableRow>

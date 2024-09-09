@@ -19,7 +19,7 @@ const UserManegment = () => {
             <div className="pb-5" >
                 <h1 className='text-3xl font-bold'>Manage User</h1>
             </div>
-            <div className='w-full max-w-5xl mx-auto relative h-96 overflow-scroll'>
+            <div className='w-full max-w-5xl mx-auto relative h-96 overflow-y-scroll'>
                 <Table>
                     <TableHeader>
                         <TableRow className="sticky  z-30">
