@@ -2,6 +2,7 @@ import App from "@/App";
 import Auth from "@/Auth";
 import Login from "@/components/Authpage/Login";
 import Signup from "@/components/Authpage/Signup";
+import BookingDetails from "@/components/BookingCompo/BookingDetails";
 import CarDetails from "@/components/CarlistingCompo/CarDetails";
 import AdminOverview from "@/components/DashboardCompo/admin/AdminOverview";
 import ManageBooking from "@/components/DashboardCompo/admin/ManageBooking";
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path: '/booking',
                 element: <ProtectedRoute><Booking /></ProtectedRoute> 
+            },
+            {
+                path: '/booking/:id',
+                element: <ProtectedRoute><BookingDetails /></ProtectedRoute> 
             },
         ]
     },

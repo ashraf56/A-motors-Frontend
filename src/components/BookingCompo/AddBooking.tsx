@@ -1,83 +1,104 @@
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button"
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogFooter,
     DialogHeader,
+    DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useForm } from "react-hook-form";
-const AddBooking = () => {
-    const { register, handleSubmit, reset } = useForm();
+import { toast } from "sonner";
+import { useCreateABookingMutation } from "@/redux/feature/bookings/bookingApi";
+import { useAppSelector } from "@/redux/hook";
+import { useCurrentUser } from "@/redux/feature/auth/authSlice";
 
-    const onSubmit = async (info: any) => {
+const AddBooking = ({book}) => {
+    const currentUser:any = useAppSelector(useCurrentUser)
+    const[CreateABooking] = useCreateABookingMutation()
 
-       console.log(info);
-       
-      reset()
+    const { register, handleSubmit,  } = useForm();
+    const onSubmit = async (data: any) => {
+        console.log(data);
+        const bookinginfo ={
+            car:book._id,
+            startTime:data.startTime,
+            date:data.date
+
+        }
+const loading = toast.loading('loading...')
+try {
+    const res = await CreateABooking(bookinginfo)
+    if (res) {
+        toast.success('booking under process', {id:loading})
     }
+} catch (error) {
+    toast.error('booking not completed', {id:loading})
+}
 
+
+    }
     return (
         <div>
-             <Dialog >
-                <DialogTrigger asChild>
-                    <Button variant="outline">Book now</Button>
-                </DialogTrigger>
+        <Dialog>
+        <DialogTrigger asChild>
+            <Button size={'sm'} >Make a book</Button>
+        </DialogTrigger>
 
-                <DialogContent className="sm:max-w-[425px] font-CustomFont">
+        <DialogContent className="sm:max-w-[425px] font-CustomFont">
+            <DialogHeader>
+                <DialogTitle>{book.name}</DialogTitle>
 
-                    <DialogHeader>
-                        <DialogDescription>
-                            Create a product.
-                        </DialogDescription>
-                    </DialogHeader>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="grid gap-4 py-4">
+            </DialogHeader>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <div className="grid gap-4 py-4">
 
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="name" className="text-right">
-                                    Product name
-                                </Label>
-                                <Input  {...register('name')} placeholder="product name" className="col-span-3" />
-                            </div>
-                            
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label className="text-right">
-                                    Price
-                                </Label>
-                                <Input type="number" {...register('price')} className="col-span-3" />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="name" className="text-right">
-                                    Stock
-                                </Label>
-                                <Input type="number" {...register('stockQuantity')} className="col-span-3" />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="name" className="text-right">
-                                    rating
-                                </Label>
-                                <Input type="text" {...register('rating')} className="col-span-3" />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                                <Label htmlFor="name" className="text-right">
-                                    Image
-                                </Label>
-                                <Input type="text" {...register('image')} className="col-span-3" />
-                            </div>
-                            
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="name" className="text-right">
+                          NID/Passport
+                        </Label>
+                        <Input  {...register('nid/passport')}  className="col-span-3" />
+                    </div>
+                    
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label className="text-right">
+                        Driving License
+                        </Label>
+                        <Input type="number"  {...register('DrivingLicense')} className="col-span-3" />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="name" className="text-right">
+                           payment number
+                        </Label>
+                        <Input type="number" {...register('payment')} className="col-span-3" />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="name" className="text-right">
+                           Start time
+                        </Label>
+                        <Input type="time" {...register('startTime')} className="col-span-3" />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="name" className="text-right">
+                         Date
+                        </Label>
+                        <Input type="date" {...register('date')} className="col-span-3" />
+                    </div>
+                                      
+                    
 
-                        </div>
-                        <DialogFooter >
-                            <Button type="submit">Create now</Button>
-                        </DialogFooter></form>
-                </DialogContent>
-            </Dialog>
-        </div>
+                </div>
+                <DialogFooter>
+                    <Button type="submit">Make</Button>
+                </DialogFooter></form>
+        </DialogContent>
+
+    </Dialog>
+</div>
     );
 };
 
