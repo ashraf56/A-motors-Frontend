@@ -40,6 +40,7 @@ const MangeCar = () => {
               <TableHead className="w-[200px]">Description</TableHead>
               <TableHead className='w-32'>price per hour</TableHead>
               <TableHead className='w-28 text-center'>Color</TableHead>
+              <TableHead className='w-28 text-center'>Car starus</TableHead>
               <TableHead className='w-28 text-center'>Car Type</TableHead>
               <TableHead className=' text-center'>Customize</TableHead>
             </TableRow>
@@ -52,6 +53,7 @@ const MangeCar = () => {
                 <TableCell className="font-medium">{p.pricePerHour}</TableCell>
                 <TableCell className="font-medium text-center">{p.color}</TableCell>
                 <TableCell className="font-medium text-center">{p.status}</TableCell>
+                <TableCell className="font-medium text-center">{p.carType}</TableCell>
 
                 <TableCell className="font-medium flex gap-3 justify-center text-center items-center">
                   

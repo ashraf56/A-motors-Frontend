@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 
 const Allbookings = () => {
-const {data, isLoading}= useGetallavailableCarsQuery(undefined)
+const {data, isLoading}= useGetallavailableCarsQuery(undefined,{pollingInterval:3000})
 console.log(data);
 
 if (isLoading) {
@@ -46,6 +46,7 @@ if (isLoading) {
     ))
 }
             </div>
+            
         </div>
     );
 };

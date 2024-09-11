@@ -9,7 +9,7 @@ const bookingApi = baseApi.injectEndpoints({
                 url: 'bookings',
                 method: "GET",
             }),
-            providesTags: ['cars']
+            providesTags: ['booking']
         }),
        
         getSingleBooking: build.query({
@@ -17,7 +17,7 @@ const bookingApi = baseApi.injectEndpoints({
                 url: `bookings/${slug}`,
                 method: "GET",
             }),
-          
+            providesTags: ['booking']
         }),
         CreateABooking: build.mutation({
             query: (data) => ({
@@ -25,7 +25,7 @@ const bookingApi = baseApi.injectEndpoints({
                 method: "POST",
                 body:data
             }),
-          
+          invalidatesTags:['booking']
         }),
        
        
