@@ -3,8 +3,8 @@ import { useGetallavailableCarsQuery, useGetallCarsQuery } from "@/redux/feature
 import { TruckIcon } from "@heroicons/react/24/outline";
 
 const AdminOverview = () => {
-    const { data } = useGetallCarsQuery(undefined)
-    const { data: availablecars } = useGetallavailableCarsQuery(undefined)
+    const { data } = useGetallCarsQuery(undefined,{pollingInterval:3000})
+    const { data: availablecars } = useGetallavailableCarsQuery(undefined,{pollingInterval:3000})
     return (
         <div className="font-CustomFont flex flex-col justify-center items-center w-full">
             <h1 className="text-3xl font-bold pb-10">Admin overview</h1>

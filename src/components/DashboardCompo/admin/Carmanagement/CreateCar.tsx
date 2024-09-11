@@ -14,7 +14,7 @@ import { Textarea } from "@/components/ui/textarea";
 import Select from 'react-select';
 import { useForm } from "react-hook-form";
 import makeAnimated from 'react-select/animated';
-import { carCategories, carFeatures } from "../Constant/constant";
+import { carCategories, carFeatures } from "../../Constant/constant";
 import { useState } from "react";
 import { ImageUplodonCloudinery } from "@/utills/ImageUplodonCloudinery";
 import { useCreateACarMutation } from "@/redux/feature/cars/carsApi";
@@ -26,8 +26,8 @@ const animatedComponents = makeAnimated();
 const CreateCar = () => {
     const [selectFeature, setSelectFeature] = useState([])
 
-    const [CreateACar, {data}] = useCreateACarMutation()
-console.log(data);
+    const [CreateACar, { data }] = useCreateACarMutation()
+    console.log(data);
 
     const handleOnchange = (soption: any) => {
         setSelectFeature(soption)
@@ -47,26 +47,26 @@ console.log(data);
             description: data.description,
             pricePerHour: Number(data.pricePerHour),
             image: uploadedImageUrl,
-            color:data.color,
+            color: data.color,
             carType: data.carType,
             features: data.select,
-            status:'available',
+            status: 'available',
             isDeleted: false,
             isElectric: Boolean(data.isElectric)
         }
         const toast1 = toast.loading('loading...')
-       try {
-        const res = await CreateACar(carinfo)
+        try {
+            const res = await CreateACar(carinfo)
 
-        if (res) {
-            toast.success('Car info Created', { id: toast1 , duration:2000});
+            if (res) {
+                toast.success('Car info Created', { id: toast1, duration: 2000 });
+            }
+            reset()
+
+        } catch (error) {
+            toast.error('Something wrong', { id: toast1, duration: 2000 });
         }
-        reset()
 
-       } catch (error) {
-        toast.error('Something wrong', { id: toast1, duration:2000 });
-       }
-       
     }
 
     return (

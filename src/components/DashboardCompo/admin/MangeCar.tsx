@@ -8,26 +8,36 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { useGetallCarsQuery } from '@/redux/feature/cars/carsApi';
+import { useDeleteSingleCarMutation, useGetallCarsQuery } from '@/redux/feature/cars/carsApi';
 import { Button } from '@/components/ui/button';
-import CreateCar from './CreateCar';
+import CreateCar from './Carmanagement/CreateCar';
+import { toast } from 'sonner';
 const MangeCar = () => {
-    const { data, isLoading } = useGetallCarsQuery(undefined, { pollingInterval: 1000 })
+  const { data, isLoading } = useGetallCarsQuery(undefined, { pollingInterval: 1000 })
+   const[deleteSingleCar]=useDeleteSingleCarMutation()
+  if (isLoading) {
+    return <p>loading...</p>
+  }
 
-    if (isLoading) {
-      return <p>loading...</p>
-    }
+const handleDeleteCar = async(id:string)=>{
+  const loading = toast.loading('loading....')
+  try {
+   await deleteSingleCar(id)
+    toast.success('Car deleted successfully',{id:loading,duration:2000})
   
-  
-  
-    return (
-        <div className='mx-auto flex flex-col justify-center items-center container my-6  font-CustomFont'>
-       <div >
+  } catch (error: any) {
+    toast.error(error,{id:loading,duration:2000})
+  }
+}
+
+  return (
+    <div className='mx-auto flex flex-col justify-center items-center container my-6  font-CustomFont'>
+      <div >
         <h1 className='text-3xl font-bold'>Manage Car</h1>
-       </div>
+      </div>
       <div className='flex flex-col my-5 w-full container gap-4'>
         <div className=' flex justify-end  w-full'>
-          <CreateCar/>
+          <CreateCar />
         </div>
 
 
@@ -42,7 +52,7 @@ const MangeCar = () => {
               <TableHead className='w-28 text-center'>Color</TableHead>
               <TableHead className='w-28 text-center'>Car starus</TableHead>
               <TableHead className='w-28 text-center'>Car Type</TableHead>
-              <TableHead className=' text-center'>Customize</TableHead>
+              <TableHead className=' text-center'>Manage</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -56,9 +66,10 @@ const MangeCar = () => {
                 <TableCell className="font-medium text-center">{p.carType}</TableCell>
 
                 <TableCell className="font-medium flex gap-3 justify-center text-center items-center">
-                  
-                  <Button size={'icon'}  ><TrashIcon className="h-6 w-6 text-white" /> </Button>
-                  <Button size={'icon'}  ><PencilSquareIcon  className="h-6 w-6 text-white" /> </Button>
+
+                  <Button size={'icon'} variant={'outline'} onClick={()=>handleDeleteCar(p._id)}  >
+                    <TrashIcon className={` 'h-6' 'w-6' ${p.isDeleted === true ? 'text-red-600': 'text-green-600'} `}/>   </Button>
+                  <Button size={'icon'}  ><PencilSquareIcon className="h-6 w-6 text-white" /> </Button>
                 </TableCell>
               </TableRow>
             ))}
@@ -66,7 +77,7 @@ const MangeCar = () => {
         </Table>
       </div>
     </div>
-    );
+  );
 };
 
 export default MangeCar;
