@@ -30,13 +30,13 @@ const carsApi = baseApi.injectEndpoints({
                 url: `cars/${id}`,
                 method: "DELETE"
             }),
-         
+            invalidatesTags: ['cars']
         }),
         updateSingleCar: build.mutation({
-            query: (slug: string) => ({
-                url: `cars/${slug}`,
+            query: (slug) => ({
+                url: `cars/${slug.id}`,
                 method: "PUT",
-                body:slug
+                body:slug.info
             }),
             invalidatesTags: ['cars']
         }),

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline';
+import {  TrashIcon } from '@heroicons/react/24/outline';
 import {
   Table,
   TableBody,
@@ -12,8 +12,9 @@ import { useDeleteSingleCarMutation, useGetallCarsQuery } from '@/redux/feature/
 import { Button } from '@/components/ui/button';
 import CreateCar from './Carmanagement/CreateCar';
 import { toast } from 'sonner';
+import Updatecar from './Carmanagement/Updatecar';
 const MangeCar = () => {
-  const { data, isLoading } = useGetallCarsQuery(undefined, { pollingInterval: 1000 })
+  const { data, isLoading } = useGetallCarsQuery(undefined, { pollingInterval: 3000 })
    const[deleteSingleCar]=useDeleteSingleCarMutation()
   if (isLoading) {
     return <p>loading...</p>
@@ -42,34 +43,36 @@ const handleDeleteCar = async(id:string)=>{
 
 
       </div>
-      <div className='w-full max-w-5xl mx-auto h-96 overflow-y-scroll'>
+      <div className='w-full  max-w-7xl mx-auto h-96 overflow-y-scroll overflow-x-scroll'>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="w-[200px]">Car name</TableHead>
-              <TableHead className="w-[200px]">Description</TableHead>
-              <TableHead className='w-32'>price per hour</TableHead>
-              <TableHead className='w-28 text-center'>Color</TableHead>
-              <TableHead className='w-28 text-center'>Car starus</TableHead>
-              <TableHead className='w-28 text-center'>Car Type</TableHead>
-              <TableHead className=' text-center'>Manage</TableHead>
+              <TableHead className="">Car Image</TableHead>
+              <TableHead className="">Car name</TableHead>
+              <TableHead className="">Description</TableHead>
+              <TableHead className='w-24'>price per hour</TableHead>
+              <TableHead className='w-28 text-center '>Color</TableHead>
+              <TableHead className='w-28 text-center '>Car status</TableHead>
+              <TableHead className='w-28 text-center '>Car Type</TableHead>
+              <TableHead className=' w-28 text-center'>Manage</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {data?.data?.map((p: any) => (
               <TableRow key={p._id}>
+                <TableCell className="font-medium "><img src={p.image} alt="img"  className='w-20 h-20 rounded-xl object-contain' /></TableCell>
                 <TableCell className="font-medium">{p.name}</TableCell>
-                <TableCell className="font-medium">{p.description.slice(0, 40)}...</TableCell>
-                <TableCell className="font-medium">{p.pricePerHour}</TableCell>
-                <TableCell className="font-medium text-center">{p.color}</TableCell>
+                <TableCell className="font-medium ">{p.description.slice(0, 40)}...</TableCell>
+                <TableCell className="font-medium">${p.pricePerHour}</TableCell>
+                <TableCell className="font-medium text-center ">{p.color}</TableCell>
                 <TableCell className="font-medium text-center">{p.status}</TableCell>
-                <TableCell className="font-medium text-center">{p.carType}</TableCell>
+                <TableCell className="font-medium text-center ">{p.carType}</TableCell>
 
-                <TableCell className="font-medium flex gap-3 justify-center text-center items-center">
+                <TableCell className="font-medium flex gap-3 justify-center   items-center">
 
                   <Button size={'icon'} variant={'outline'} onClick={()=>handleDeleteCar(p._id)}  >
-                    <TrashIcon className={` 'h-6' 'w-6' ${p.isDeleted === true ? 'text-red-600': 'text-green-600'} `}/>   </Button>
-                  <Button size={'icon'}  ><PencilSquareIcon className="h-6 w-6 text-white" /> </Button>
+                    <TrashIcon className={` 'h-3' 'w-3' ${p.isDeleted === "true" ? 'text-red-600': 'text-green-600'} `}/>   </Button>
+                  <Updatecar p={p}/>
                 </TableCell>
               </TableRow>
             ))}

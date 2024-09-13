@@ -41,18 +41,18 @@ const Header = () => {
                     </Link>
                 </Button>
                 {user && <Button variant={'ghost'} size={"default"} className="uppercase " >
-                    <Link to={`/dashboard/${UserRole?.role}/overview`}
-                    >
-                        Dashboard
-                    </Link>
-                </Button>}
-                {user && <Button variant={'ghost'} size={"default"} className="uppercase " >
                     <Link to={`/booking`}
                     >
                         Booking
                     </Link>
                 </Button>
                 }
+                {user && <Button variant={'ghost'} size={"default"} className="uppercase " >
+                    <Link to={`/dashboard/${UserRole?.role}/overview`}
+                    >
+                        Dashboard
+                    </Link>
+                </Button>}
                 {user ?
                     <Button variant={'ghost'} size={"default"} className="uppercase" onClick={() => dispatch(logout())}>
 

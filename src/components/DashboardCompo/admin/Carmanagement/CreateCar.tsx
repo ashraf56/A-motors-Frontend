@@ -26,8 +26,7 @@ const animatedComponents = makeAnimated();
 const CreateCar = () => {
     const [selectFeature, setSelectFeature] = useState([])
 
-    const [CreateACar, { data }] = useCreateACarMutation()
-    console.log(data);
+    const [CreateACar] = useCreateACarMutation()
 
     const handleOnchange = (soption: any) => {
         setSelectFeature(soption)
@@ -52,7 +51,7 @@ const CreateCar = () => {
             features: data.select,
             status: 'available',
             isDeleted: false,
-            isElectric: Boolean(data.isElectric)
+            isElectric: data.isElectric
         }
         const toast1 = toast.loading('loading...')
         try {
