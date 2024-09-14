@@ -35,6 +35,15 @@ const bookingApi = baseApi.injectEndpoints({
           invalidatesTags:['booking']
         }),
        
+        CencleBooking: build.mutation({
+            query: (id) => ({
+                url: `bookings/${id}`,
+                method: "DELETE",
+                
+            }),
+          invalidatesTags:['booking']
+        }),
+       
        
 
     })
@@ -45,5 +54,6 @@ export const {
   useGetallBookingQuery,
   useGetSingleBookingQuery,
   useCreateABookingMutation,
-  useGetmyAllBookingQuery
+  useGetmyAllBookingQuery,
+  useCencleBookingMutation
 } = bookingApi

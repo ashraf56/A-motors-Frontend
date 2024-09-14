@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useGetmyAllBookingQuery } from "@/redux/feature/bookings/bookingApi";
+import { useCencleBookingMutation, useGetmyAllBookingQuery } from "@/redux/feature/bookings/bookingApi";
 import {
   Table,
   TableBody,
@@ -9,23 +9,35 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 const Userbooking = () => {
-const {data, isLoading} = useGetmyAllBookingQuery(undefined)
-console.log(data);
-if (isLoading) {
+  const [CencleBooking] = useCencleBookingMutation()
+  const { data, isLoading } = useGetmyAllBookingQuery(undefined)
+  const handleCencleBooking = async (id: string | null) => {
+    const loading = toast.loading('loading....')
+    try {
+      await CencleBooking(id)
+      toast.success('Booking cencled successfully', { id: loading, duration: 2000 })
+
+    } catch (error: any) {
+      toast.error(error, { id: loading, duration: 2000 })
+    }
+  }
+
+  if (isLoading) {
     return <p>loading...</p>
   }
 
 
-    return (
-       
-            <div className='mx-auto flex flex-col justify-center items-center container my-6  font-CustomFont'>
+  return (
+
+    <div className='mx-auto flex flex-col justify-center items-center container my-6  font-CustomFont'>
       <div >
         <h1 className='text-3xl font-bold'>Manage your Booking </h1>
       </div>
       <div className='flex flex-col my-5 w-full container gap-4'>
         <div className=' flex justify-end  w-full'>
-         
+
         </div>
 
 
@@ -47,7 +59,7 @@ if (isLoading) {
           <TableBody>
             {data?.data?.map((p: any) => (
               <TableRow key={p._id}>
-                
+
                 <TableCell className="font-medium">{p.date}</TableCell>
                 <TableCell className="font-medium">{p.car?.name}</TableCell>
                 <TableCell className="font-medium ">{p.user?.name}</TableCell>
@@ -59,9 +71,9 @@ if (isLoading) {
                 <TableCell className="font-medium flex gap-3 justify-center   items-center">
 
                   <Button size={'sm'} variant={'outline'}  >Return car  </Button>
-                  <Button size={'sm'} variant={'outline'} className="text-red-600" >Cencel Booking  </Button>
-                   
-                  
+                  <Button size={'sm'} variant={'outline'} className="text-red-600" onClick={() => handleCencleBooking(p._id)} >Cencel Booking  </Button>
+
+
                 </TableCell>
               </TableRow>
             ))}
@@ -69,8 +81,8 @@ if (isLoading) {
         </Table>
       </div>
     </div>
-       
-    );
+
+  );
 };
 
 export default Userbooking;
