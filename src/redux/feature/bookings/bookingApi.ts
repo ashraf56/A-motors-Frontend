@@ -11,6 +11,13 @@ const bookingApi = baseApi.injectEndpoints({
             }),
             providesTags: ['booking']
         }),
+        getmyAllBooking: build.query({
+            query: () => ({
+                url: 'bookings/my-bookings',
+                method: "GET",
+            }),
+            providesTags: ['booking']
+        }),
        
         getSingleBooking: build.query({
             query: (slug:string) => ({
@@ -37,5 +44,6 @@ const bookingApi = baseApi.injectEndpoints({
 export const {
   useGetallBookingQuery,
   useGetSingleBookingQuery,
-  useCreateABookingMutation
+  useCreateABookingMutation,
+  useGetmyAllBookingQuery
 } = bookingApi

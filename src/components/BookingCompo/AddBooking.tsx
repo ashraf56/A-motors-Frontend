@@ -14,13 +14,14 @@ import { Label } from "@/components/ui/label"
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useCreateABookingMutation } from "@/redux/feature/bookings/bookingApi";
+import { useAppSelector } from "@/redux/hook";
+import { useCurrentUser } from "@/redux/feature/auth/authSlice";
 
 const AddBooking = ({ book }:any) => {
     const [CreateABooking] = useCreateABookingMutation()
-
-    const { register, handleSubmit, } = useForm();
+ const usersInfo:any = useAppSelector(useCurrentUser)
+    const { register, handleSubmit, reset} = useForm();
     const onSubmit = async (data: any) => {
-        console.log(data);
         const time = data.startTime
         const [hr, min] = time.split(':')
         const timeperiod = hr >= 12 ? "PM" : "AM"
@@ -32,10 +33,11 @@ const AddBooking = ({ book }:any) => {
         const bookinginfo = {
             car: book._id,
             nid:data.nid,
+            user:usersInfo!.id!,
             license:data.DrivingLicense,
             startTime: formatedStartTime,
             date: data.date,
-            status:'processing'
+            bookingStatus:'processing'
 
         }
         console.log(bookinginfo);
@@ -46,6 +48,7 @@ const AddBooking = ({ book }:any) => {
             if (res) {
                 toast.success('booking under process', { id: loading })
             }
+            reset()
         } catch (error) {
             toast.error('booking not completed', { id: loading })
         }
