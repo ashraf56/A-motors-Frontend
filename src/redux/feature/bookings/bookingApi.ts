@@ -43,6 +43,14 @@ const bookingApi = baseApi.injectEndpoints({
             }),
           invalidatesTags:['booking']
         }),
+        ApproveBooking: build.mutation({
+            query: (id) => ({
+                url: `bookings/${id}`,
+                method: "PATCH",
+                
+            }),
+          invalidatesTags:['booking']
+        }),
        
        
 
@@ -55,5 +63,6 @@ export const {
   useGetSingleBookingQuery,
   useCreateABookingMutation,
   useGetmyAllBookingQuery,
-  useCencleBookingMutation
+  useCencleBookingMutation,
+  useApproveBookingMutation
 } = bookingApi

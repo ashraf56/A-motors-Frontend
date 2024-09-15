@@ -15,7 +15,7 @@ export const adminroutes = [
     {
         id: 2,
         icon:`${mallbooking}`,
-        name: 'Manage all Bookings',
+        name: 'Manage Bookings',
         route: 'admin/manage-booking',
 
     },

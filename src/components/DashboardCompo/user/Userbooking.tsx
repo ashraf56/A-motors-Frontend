@@ -70,9 +70,9 @@ const Userbooking = () => {
 
                 <TableCell className="font-medium flex gap-3 justify-center   items-center">
 
-                  <Button size={'sm'} variant={'outline'}  >Return car  </Button>
-                  <Button size={'sm'} variant={'outline'} className="text-red-600" onClick={() => handleCencleBooking(p._id)} >Cencel Booking  </Button>
-
+                  <Button size={'sm'} variant={'outline'}  >Return car  </Button>        
+                  {p.bookingStatus=== 'approved'  ?<Button size={'sm'} disabled>Cencel Booking </Button> :
+                    <Button size={'sm'} variant={'outline'} className="text-red-600" onClick={() => handleCencleBooking(p._id)} >Cencel Booking  </Button>}
 
                 </TableCell>
               </TableRow>

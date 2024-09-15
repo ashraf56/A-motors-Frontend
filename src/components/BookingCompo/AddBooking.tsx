@@ -46,7 +46,7 @@ const AddBooking = ({ book }:any) => {
         try {
             const res = await CreateABooking(bookinginfo)
             if (res) {
-                toast.success('booking under process', { id: loading })
+                toast.success('booking under processing', { id: loading })
             }
             reset()
         } catch (error) {

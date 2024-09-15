@@ -33,7 +33,7 @@ const Sidebar = () => {
                                     >
                                    <img src={l.icon} alt="f"  />
                                     </span>
-                                        <span className={`${!open && 'lg:hidden'} hidden lg:block `}> {l?.name}</span>
+                                        <span className={`${!open && 'lg:hidden'} hidden lg:block  text-sm`}> {l?.name}</span>
                                     </Link>
                                 </li>
                             )) :
@@ -44,7 +44,7 @@ const Sidebar = () => {
                                     >
                                    <img src={l?.icon} alt="f"  />
                                     </span>
-                                        <span className={`${!open && 'lg:hidden'} hidden lg:block `}> {l?.name}</span>
+                                        <span className={`${!open && 'lg:hidden'} hidden lg:block text-sm `}> {l?.name}</span>
                                     </Link>
                                 </li>
                             ))
@@ -56,7 +56,7 @@ const Sidebar = () => {
                                     >
                                     <HomeIcon className="w-6 h-6 "/>
                                     </span>
-                            <span className={`${!open && 'lg:hidden'} hidden lg:block px-2`}> Back to Home</span>
+                            <span className={`${!open && 'lg:hidden'} hidden lg:block px-2 text-sm`}> Back to Home</span>
                         </Link>
                     </li>
 
