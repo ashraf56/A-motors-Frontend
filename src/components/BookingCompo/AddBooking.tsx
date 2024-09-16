@@ -37,10 +37,10 @@ const AddBooking = ({ book }:any) => {
             license:data.DrivingLicense,
             startTime: formatedStartTime,
             date: data.date,
-            bookingStatus:'processing'
+            bookingStatus:'processing',
+            paymentStatus: 'pending'
 
         }
-        console.log(bookinginfo);
 
         const loading = toast.loading('loading...')
         try {

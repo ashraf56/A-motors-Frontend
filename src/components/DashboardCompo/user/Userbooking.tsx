@@ -52,7 +52,6 @@ const Userbooking = () => {
               <TableHead className=' text-center '>StartTime</TableHead>
               <TableHead className='text-center '>End time</TableHead>
               <TableHead className='text-center '>Booking status</TableHead>
-              <TableHead className='  text-center'>Total cost</TableHead>
               <TableHead className='  text-center'>Action</TableHead>
             </TableRow>
           </TableHeader>
@@ -66,11 +65,9 @@ const Userbooking = () => {
                 <TableCell className="font-medium text-center ">{p.startTime}</TableCell>
                 <TableCell className="font-medium text-center">{p.endTime || 'N/A'}</TableCell>
                 <TableCell className="font-medium text-center ">{p.bookingStatus}</TableCell>
-                <TableCell className="font-medium text-center ">{p.totalCost}</TableCell>
 
                 <TableCell className="font-medium flex gap-3 justify-center   items-center">
 
-                  <Button size={'sm'} variant={'outline'}  >Return car  </Button>        
                   {p.bookingStatus=== 'approved'  ?<Button size={'sm'} disabled>Cencel Booking </Button> :
                     <Button size={'sm'} variant={'outline'} className="text-red-600" onClick={() => handleCencleBooking(p._id)} >Cencel Booking  </Button>}
 
