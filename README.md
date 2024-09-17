@@ -24,8 +24,9 @@ A-Motors is a sleek and user-friendly car rental reservation system designed to 
 
 
 ## Admin
- ```email: fahim@gmail.com
-    password: 1234
+ ```
+ email: fahim@gmail.com
+password: 1234
 ```
 ## Live Link :
  https://a-motors-frontend.vercel.app/
