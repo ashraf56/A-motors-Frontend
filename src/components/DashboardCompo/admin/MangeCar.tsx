@@ -9,7 +9,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { useDeleteSingleCarMutation, useGetallCarsQuery } from '@/redux/feature/cars/carsApi';
-import { Button } from '@/components/ui/button';
 import CreateCar from './Carmanagement/CreateCar';
 import { toast } from 'sonner';
 import Updatecar from './Carmanagement/Updatecar';
@@ -43,18 +42,17 @@ const handleDeleteCar = async(id:string)=>{
 
 
       </div>
-      <div className='w-full  max-w-7xl mx-auto h-96 overflow-y-scroll overflow-x-scroll'>
+      <div className='w-full  max-w-full mx-auto h-96 overflow-y-scroll overflow-x-scroll'>
         <Table>
           <TableHeader>
             <TableRow>
               <TableHead className="">Car Image</TableHead>
               <TableHead className="">Car name</TableHead>
-              <TableHead className="">Description</TableHead>
-              <TableHead className='w-24'>price per hour</TableHead>
-              <TableHead className='w-28 text-center '>Color</TableHead>
-              <TableHead className='w-28 text-center '>Car status</TableHead>
-              <TableHead className='w-28 text-center '>Car Type</TableHead>
-              <TableHead className=' w-28 text-center'>Manage</TableHead>
+              <TableHead className=''>price per hour</TableHead>
+              <TableHead className=' text-center '>Color</TableHead>
+              <TableHead className=' text-center '>Car status</TableHead>
+              <TableHead className=' text-center '>Car Type</TableHead>
+              <TableHead className='  text-center'>Manage</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -62,16 +60,16 @@ const handleDeleteCar = async(id:string)=>{
               <TableRow key={p._id}>
                 <TableCell className="font-medium "><img src={p.image} alt="img"  className='w-20 h-20 rounded-xl object-contain' /></TableCell>
                 <TableCell className="font-medium">{p.name}</TableCell>
-                <TableCell className="font-medium ">{p.description.slice(0, 40)}...</TableCell>
                 <TableCell className="font-medium">${p.pricePerHour}</TableCell>
                 <TableCell className="font-medium text-center ">{p.color}</TableCell>
                 <TableCell className="font-medium text-center">{p.status}</TableCell>
                 <TableCell className="font-medium text-center ">{p.carType}</TableCell>
 
-                <TableCell className="font-medium flex gap-3 justify-center   items-center">
-
-                  <Button size={'icon'} variant={'outline'} onClick={()=>handleDeleteCar(p._id)}  >
-                    <TrashIcon className={` 'h-3' 'w-3' ${p.isDeleted === "true" ? 'text-red-600': 'text-green-600'} `}/>   </Button>
+                <TableCell className="font-medium flex mt-5 gap-3 justify-center w-full  items-center">
+                    <div className='w-8' onClick={()=>handleDeleteCar(p._id)}>
+                       <TrashIcon className={` 'h-2' 'w-2' ${p.isDeleted === "true" ? 'text-red-600': 'text-green-600'} `} />  
+                    </div>
+                   
                   <Updatecar p={p}/>
                 </TableCell>
               </TableRow>

@@ -50,19 +50,23 @@ const CreateCar = () => {
             carType: data.carType,
             features: data.select,
             status: 'available',
-            isDeleted: false,
+            isDeleted: 'false',
             isElectric: data.isElectric
         }
         const toast1 = toast.loading('loading...')
         try {
-            const res = await CreateACar(carinfo)
-
-            if (res) {
-                toast.success('Car info Created', { id: toast1, duration: 2000 });
+            const res:any = await CreateACar(carinfo)
+           console.log({res});
+           
+            if (res?.error?.data?.success === false) {
+                toast.error(res?.error?.data?.message, { id: toast1, duration: 2000 });
             }
+           else{
+             toast.success(res.data.message, { id: toast1, duration: 2000 })
             reset()
+           }
 
-        } catch (error) {
+        } catch (error) {   
             toast.error('Something wrong', { id: toast1, duration: 2000 });
         }
 

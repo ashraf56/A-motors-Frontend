@@ -51,7 +51,7 @@ const Login = () => {
 
     }
     return (
-        <div className="flex flex-col justify-center font-CustomFont container items-center h-[100vh] my-10 md:my-0 " >
+        <div className="flex flex-col justify-center font-CustomFont container items-center h-[95vh] my-10 md:my-0 " >
             <Card className="w-full max-w-lg border-none shadow-none ">
                 <CardHeader>
                     <CardTitle>Log in now</CardTitle>

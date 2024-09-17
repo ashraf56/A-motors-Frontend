@@ -1,10 +1,14 @@
 import { Card } from "@/components/ui/card";
+import { useGetAllUserQuery } from "@/redux/feature/auth/authApi";
+import { useGetmyAllBookingQuery } from "@/redux/feature/bookings/bookingApi";
 import { useGetallavailableCarsQuery, useGetallCarsQuery } from "@/redux/feature/cars/carsApi";
 import { TruckIcon } from "@heroicons/react/24/outline";
 
 const AdminOverview = () => {
     const { data } = useGetallCarsQuery(undefined,{pollingInterval:3000})
+    const {data:allbooking} = useGetmyAllBookingQuery(undefined,{pollingInterval:1000})
     const { data: availablecars } = useGetallavailableCarsQuery(undefined,{pollingInterval:3000})
+    const {data:totaluser} = useGetAllUserQuery(undefined,{pollingInterval:1000})
     return (
         <div className="font-CustomFont flex flex-col justify-center items-center w-full">
             <h1 className="text-3xl font-bold pb-10">Admin overview</h1>
@@ -22,12 +26,12 @@ const AdminOverview = () => {
                 </Card>
                 <Card className="rounded-none w-96 h-32 md:h-52 text-center items-center flex flex-col justify-center hover:bg-green-100 transition-all duration-300">
                     <h1>Total booking</h1>
-                    <p className="font-CustomFont text-5xl font-bold ">30</p>
+                    <p className="font-CustomFont text-5xl font-bold ">{allbooking?.data?.length}</p>
 
                 </Card>
                 <Card className="rounded-none w-96 h-32 md:h-52 text-center items-center flex flex-col justify-center hover:bg-yellow-100 transition-all duration-300">
                     <h1>Total User</h1>
-                    <p className="font-CustomFont text-5xl font-bold ">36</p>
+                    <p className="font-CustomFont text-5xl font-bold ">{totaluser?.data?.length}</p>
 
                 </Card>
             </div>

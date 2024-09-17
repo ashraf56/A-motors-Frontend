@@ -33,7 +33,7 @@ const Updatecar = ({ p }: any) => {
         setSelectFeature(soption)
 
     }
-    const { register, handleSubmit, reset , setValue} = useForm();
+    const { register, handleSubmit, setValue} = useForm();
 
 
     useEffect(() => {
@@ -83,7 +83,7 @@ const Updatecar = ({ p }: any) => {
             if (res) {
                 toast.success('Car info Updated', { id: toast1, duration: 2000 });
             }
-            reset()
+            
 
         } catch (error) {
             toast.error('Something wrong', { id: toast1, duration: 2000 });
@@ -95,7 +95,7 @@ const Updatecar = ({ p }: any) => {
         <div className="font-CustomFont h-full">
             <Dialog >
                 <DialogTrigger asChild>
-                    <Button variant="outline"><PencilSquareIcon className="w-6 h-6 " /></Button>
+                    <Button variant="ghost"><PencilSquareIcon className="w-6 h-6 " /></Button>
                 </DialogTrigger>
 
                 <DialogContent className="sm:max-w-5xl font-CustomFont">

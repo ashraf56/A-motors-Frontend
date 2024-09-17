@@ -67,14 +67,13 @@ const ManageBooking = () => {
                             <TableCell className="font-medium">{p.car.name}</TableCell>
                             <TableCell className="font-medium">{p.user.email}</TableCell>
                             <TableCell className="font-medium">{p.startTime}</TableCell>
-                            <TableCell className="font-medium">{p.endTIme||'N/A'}</TableCell>
-                            <TableCell className="font-medium text-center">{p.bookingStatus}</TableCell>
-                            <TableCell className="font-medium text-center">{p.totalCost}</TableCell>
+                            <TableCell className="font-medium">{p.endTime||'N/A'}</TableCell>
+                            <TableCell className={`font-medium text-center ${p.bookingStatus==='completed'&& 'text-green-600'}`}>{p.bookingStatus}</TableCell>                            <TableCell className="font-medium text-center">{p.totalCost}</TableCell>
 
                             <TableCell className="font-medium flex gap-3 justify-center text-center items-center">
 
                                 <Button size={'sm'} onClick={()=>handleApproveBooking(p._id)} > Approve</Button>
-                              {p.bookingStatus=== 'approved' && user?.role !=='admin'  ?<Button size={'sm'} disabled>Cencle </Button> :<Button size={'sm'}  onClick={()=>handleCencleBooking(p._id)}>Cencle </Button>}
+                              {p.bookingStatus === 'approved' && user?.role !=='admin'  ? <Button size={'sm'} disabled>Cencle </Button> :<Button size={'sm'}  onClick={()=>handleCencleBooking(p._id)}>Cencle </Button>}
                             </TableCell>
                         </TableRow>
                     ))}

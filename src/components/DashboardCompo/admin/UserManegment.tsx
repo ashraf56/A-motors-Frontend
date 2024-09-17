@@ -43,7 +43,7 @@ const UserManegment = () => {
                                 <TableCell className="font-medium flex gap-3 justify-center text-center items-center">
 
                                     <Button size={'sm'}  > remove</Button>
-                                    <Button size={'sm'}  >g </Button>
+                                    <Button size={'sm'}  >Make admin </Button>
                                 </TableCell>
                             </TableRow>
                         ))}
