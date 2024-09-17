@@ -16,11 +16,11 @@ import {
 import UserUpdateinfo from "./UserUpdateinfo";
 const UserOverview = () => {
     const user: any = useAppSelector(useCurrentUser)
-    const { data,isLoading } = useGetSingleUserQuery(user?.id)
+    const { data, isLoading } = useGetSingleUserQuery(user?.id)
     const { data: myBookings } = useGetmyAllBookingQuery(undefined, { pollingInterval: 3000 })
-   if (isLoading) {
-    return <p>loading...</p>
-   }
+    if (isLoading) {
+        return <p>loading...</p>
+    }
     return (
         <div className=" w-full h-screen font-CustomFont overflow-y-scroll">
             <div className='bg-gradient-to-r from-[#ff1b6b] to-[#45caff] w-full h-44  rounded-b-2xl'>
@@ -35,8 +35,8 @@ const UserOverview = () => {
                 <CardHeader>
                     <CardTitle className="flex gap-3 items-center"> <h1 className=" text-2xl font-bold ">
                         {data?.data.name}</h1>
-                        <UserUpdateinfo userinfo={data?.data}/>
-                    
+                        <UserUpdateinfo userinfo={data?.data} />
+
                     </CardTitle>
                     <CardDescription>
                         <p className=" font-medium text-base py-2 flex gap-2 items-center">

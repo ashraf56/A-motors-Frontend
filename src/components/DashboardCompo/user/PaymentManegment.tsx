@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button";
+import ItemnotFond from "@/components/Reusable/ItemnotFond";
 const PaymentManegment = () => {
   const { data, isLoading } = useGetmyAllBookingQuery(undefined)
 
@@ -21,7 +22,8 @@ const PaymentManegment = () => {
   return (
 
     <div className='mx-auto flex flex-col justify-center items-center container my-6  font-CustomFont'>
-      <div >
+  { data?.data.length === 0 ?<ItemnotFond message={'No payment Available'}/> : <>
+  <div >
         <h1 className='text-3xl font-bold'>Manage your Payment </h1>
       </div>
       <div className='flex flex-col my-5 w-full container gap-4'>
@@ -68,6 +70,7 @@ const PaymentManegment = () => {
           </TableBody>
         </Table>
       </div>
+   </>}
     </div>
 
   );
