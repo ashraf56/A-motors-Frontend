@@ -13,6 +13,7 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
+import UserUpdateinfo from "./UserUpdateinfo";
 const UserOverview = () => {
     const user: any = useAppSelector(useCurrentUser)
     const { data,isLoading } = useGetSingleUserQuery(user?.id)
@@ -32,7 +33,10 @@ const UserOverview = () => {
                 </Avatar>
 
                 <CardHeader>
-                    <CardTitle> <h1 className=" text-2xl font-bold ">{data?.data.name}</h1>
+                    <CardTitle className="flex gap-3 items-center"> <h1 className=" text-2xl font-bold ">
+                        {data?.data.name}</h1>
+                        <UserUpdateinfo userinfo={data?.data}/>
+                    
                     </CardTitle>
                     <CardDescription>
                         <p className=" font-medium text-base py-2 flex gap-2 items-center">
