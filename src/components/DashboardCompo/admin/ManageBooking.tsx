@@ -20,8 +20,10 @@ const ManageBooking = () => {
     const handleCencleBooking = async (id: string | null) => {
         const loading = toast.loading('loading....')
         try {
-          await CencleBooking(id)
+         const res = await CencleBooking(id)
+         if (res?.data?.success === true) {
           toast.success('Booking cencled successfully', { id: loading, duration: 2000 })
+         }
     
         } catch (error: any) {
           toast.error(error, { id: loading, duration: 2000 })
@@ -30,8 +32,10 @@ const ManageBooking = () => {
     const handleApproveBooking = async (id: string | null) => {
         const loading = toast.loading('loading....')
         try {
-          await ApproveBooking(id)
+         const res = await ApproveBooking(id)
+        if (res?.data?.success === true) {
           toast.success('Booking Approved successfully', { id: loading, duration: 2000 })
+        }
     
         } catch (error: any) {
           toast.error(error, { id: loading, duration: 2000 })

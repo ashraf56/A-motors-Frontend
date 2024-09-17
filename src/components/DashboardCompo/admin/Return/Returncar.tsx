@@ -37,9 +37,8 @@ const Returncar = ({ book }: any) => {
         const loading = toast.loading('loading...', {duration:2000})
         try {
             const res:any = await returnCar(returnCArinfo)
-           console.log(res);
            
-            if (res.data.success === true) {
+            if (res?.data.success === true) {
                 toast.success( res.data.message, { id: loading , duration:2000})
                   reset()
             }else{

@@ -59,7 +59,7 @@ const PaymentManegment = () => {
 
                 <TableCell className="font-medium flex gap-3 justify-center   items-center">
 
-                { p.bookingStatus === 'approved' && p.totalCost > 0  && <Button size={'sm'} variant={'outline'}  > Complete Payment </Button>        
+                { p.bookingStatus === 'approved' && p.totalCost > 0  && <Button size={'sm'} variant={'outline'}  className="text-red-500"> Complete Payment </Button>        
                   }
 
                 </TableCell>

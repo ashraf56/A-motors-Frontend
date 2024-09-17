@@ -17,10 +17,10 @@ import { useCreateABookingMutation } from "@/redux/feature/bookings/bookingApi";
 import { useAppSelector } from "@/redux/hook";
 import { useCurrentUser } from "@/redux/feature/auth/authSlice";
 
-const AddBooking = ({ book }:any) => {
+const AddBooking = ({ book }: any) => {
     const [CreateABooking] = useCreateABookingMutation()
- const usersInfo:any = useAppSelector(useCurrentUser)
-    const { register, handleSubmit, reset} = useForm();
+    const usersInfo: any = useAppSelector(useCurrentUser)
+    const { register, handleSubmit, reset } = useForm();
     const onSubmit = async (data: any) => {
         const time = data.startTime
         const [hr, min] = time.split(':')
@@ -32,12 +32,12 @@ const AddBooking = ({ book }:any) => {
 
         const bookinginfo = {
             car: book._id,
-            nid:data.nid,
-            user:usersInfo!.id!,
-            license:data.DrivingLicense,
+            nid: data.nid,
+            user: usersInfo!.id!,
+            license: data.DrivingLicense,
             startTime: formatedStartTime,
             date: data.date,
-            bookingStatus:'processing',
+            bookingStatus: 'processing',
             paymentStatus: 'pending'
 
         }
@@ -45,22 +45,23 @@ const AddBooking = ({ book }:any) => {
         const loading = toast.loading('loading...')
         try {
             const res = await CreateABooking(bookinginfo)
-            if (res) {
-                toast.success('booking under processing', { id: loading })
+            if (res.data.success === true) {
+                toast.success('booking under processing', { id: loading, duration: 2000 })
+                reset()
             }
-            reset()
+
         } catch (error) {
-            toast.error('booking not completed', { id: loading })
+            toast.error('booking not completed', { id: loading, duration: 2000 })
         }
 
 
     }
     return (
         <div>
-        <Dialog>
-        <DialogTrigger asChild>
-            <Button size={'sm'} >Make Request for booking</Button>
-        </DialogTrigger>
+            <Dialog>
+                <DialogTrigger asChild>
+                    <Button size={'sm'} >Make Request for booking</Button>
+                </DialogTrigger>
 
                 <DialogContent className="sm:max-w-[425px] font-CustomFont">
                     <DialogHeader>
@@ -83,7 +84,7 @@ const AddBooking = ({ book }:any) => {
                                 </Label>
                                 <Input type="text"  {...register('DrivingLicense')} className="col-span-3" />
                             </div>
-                            
+
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="name" className="text-right">
                                     Start time
@@ -105,8 +106,8 @@ const AddBooking = ({ book }:any) => {
                         </DialogFooter></form>
                 </DialogContent>
 
-    </Dialog>
-</div>
+            </Dialog>
+        </div>
     );
 };
 

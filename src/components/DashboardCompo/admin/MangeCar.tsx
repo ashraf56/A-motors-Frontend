@@ -22,8 +22,10 @@ const MangeCar = () => {
 const handleDeleteCar = async(id:string)=>{
   const loading = toast.loading('loading....')
   try {
-   await deleteSingleCar(id)
-    toast.success('Car deleted successfully',{id:loading,duration:2000})
+   const res = await deleteSingleCar(id)
+    if (res.data.success === true) {
+      toast.success('Car deleted successfully',{id:loading,duration:2000})
+    }
   
   } catch (error: any) {
     toast.error(error,{id:loading,duration:2000})
