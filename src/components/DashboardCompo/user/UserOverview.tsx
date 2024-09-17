@@ -15,10 +15,11 @@ import {
 } from "@/components/ui/alert"
 const UserOverview = () => {
     const user: any = useAppSelector(useCurrentUser)
-    const { data } = useGetSingleUserQuery(user?.id)
+    const { data,isLoading } = useGetSingleUserQuery(user?.id)
     const { data: myBookings } = useGetmyAllBookingQuery(undefined, { pollingInterval: 3000 })
-    console.log(data);
-
+   if (isLoading) {
+    return <p>loading...</p>
+   }
     return (
         <div className=" w-full h-screen font-CustomFont overflow-y-scroll">
             <div className='bg-gradient-to-r from-[#ff1b6b] to-[#45caff] w-full h-44  rounded-b-2xl'>
@@ -50,10 +51,10 @@ const UserOverview = () => {
                             myBookings?.data.length === 0 ? 'You have no complete booking history'
                                 : myBookings?.data.filter((m: any) => m.bookingStatus == 'completed').map((mb: any) => (
                                     <Alert>
-                                        <AlertTitle>{mb.car.name}</AlertTitle>
+                                        <AlertTitle className="font-bold">{mb.car.name}</AlertTitle>
                                         <AlertDescription>
                                             {mb.date}
-                                            <p > Total Cost ${mb.totalCost}</p>
+                                            <p > Total Cost <span className="text-red-500 font-bold">${mb.totalCost}</span></p>
                                         </AlertDescription>
                                     </Alert>
                                 ))}

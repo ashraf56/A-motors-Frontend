@@ -24,12 +24,20 @@ const authApi = baseApi.injectEndpoints({
             }),
             providesTags: ['auth']
         }),
-        getUpdateUserInfo: build.query({
+        getUpdateUserInfo: build.mutation({
             query: (data) => ({
                 url: `auth/${data.id}`,
                 method: "PUT",
-                body:data.info
+                body: data.info
             }),
+            invalidatesTags: ['auth']
+        }),
+        makeAdmin: build.mutation({
+            query: (id) => ({
+                url: `auth/${id}`,
+                method: "PATCH",
+            }),
+            invalidatesTags: ['auth']
         }),
         getSingleUser: build.query({
             query: (id) => ({
@@ -38,7 +46,7 @@ const authApi = baseApi.injectEndpoints({
             }),
             providesTags: ['auth']
         }),
-      
+
     }),
 
 
@@ -46,4 +54,11 @@ const authApi = baseApi.injectEndpoints({
 })
 
 
-export const { useLoginUserMutation, useSignUpUserMutation , useGetAllUserQuery , useGetSingleUserQuery,useGetUpdateUserInfoQuery} = authApi
+export const {
+    useLoginUserMutation,
+    useSignUpUserMutation,
+    useGetAllUserQuery,
+    useGetSingleUserQuery
+    , useGetUpdateUserInfoMutation,
+    useMakeAdminMutation
+} = authApi

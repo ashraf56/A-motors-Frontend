@@ -58,7 +58,8 @@ const Userbooking = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.data?.map((p: any) => (
+            {
+            data?.data?.map((p: any) => (
               <TableRow key={p._id}>
 
                 <TableCell className="font-medium">{p.date}</TableCell>
@@ -70,7 +71,8 @@ const Userbooking = () => {
 
                 <TableCell className="font-medium flex gap-3 justify-center   items-center">
 
-                  {p.bookingStatus=== 'approved'  ?<Button size={'sm'} disabled>Cencel Booking </Button> :
+                  {p.bookingStatus=== 'approved' || p.bookingStatus=== 'completed' ? <Button size={'sm'} disabled>Cencel Booking </Button>
+                   :
                     <Button size={'sm'} variant={'outline'} className="text-red-600" onClick={() => handleCencleBooking(p._id)} >Cencel Booking  </Button>}
 
                 </TableCell>

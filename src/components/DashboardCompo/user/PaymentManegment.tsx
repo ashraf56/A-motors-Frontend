@@ -46,7 +46,7 @@ const PaymentManegment = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.data?.map((p: any) => (
+            {data?.data?.filter((pm:any) => pm.bookingStatus =='completed').map((p: any) => (
               <TableRow key={p._id}>
 
                 <TableCell className="font-medium">{p.date}</TableCell>
@@ -59,8 +59,8 @@ const PaymentManegment = () => {
 
                 <TableCell className="font-medium flex gap-3 justify-center   items-center">
 
-                { p.bookingStatus === 'approved' && p.totalCost > 0  && <Button size={'sm'} variant={'outline'}  className="text-red-500"> Complete Payment </Button>        
-                  }
+                <Button size={'sm'} variant={'outline'}  className="text-red-500"> Complete Payment </Button>        
+                  
 
                 </TableCell>
               </TableRow>

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useGetAllUserQuery } from "@/redux/feature/auth/authApi";
+import { useGetAllUserQuery, useMakeAdminMutation } from "@/redux/feature/auth/authApi";
 import {
     Table,
     TableBody,
@@ -9,8 +9,28 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
 const UserManegment = () => {
     const { data: allusers, isLoading } = useGetAllUserQuery(undefined)
+
+const [makeAdmin] = useMakeAdminMutation()
+
+const handleMakeadmin = async(id:string)=>{
+
+    const loader = toast.loading('loading...',{duration:2000})
+    try {
+        const res =await makeAdmin(id)
+        if (res?.data.success === true) {
+            toast.success( res?.data?.message ,{id:loader,duration:2000})
+          }
+    
+
+    } catch (error) {
+          toast.error('Something error',{id:loader,duration:2000})
+    }
+}
+
+
     if (isLoading) {
         return <p>Loading...</p>
     }
@@ -27,7 +47,7 @@ const UserManegment = () => {
                             <TableHead className="w-[200px]">Email</TableHead>
                             <TableHead className='w-32'>role</TableHead>
                             <TableHead className='w-28 text-center'>Phone</TableHead>
-                            <TableHead className='w-28 text-center'>Adress</TableHead>
+                            <TableHead className='w-28 text-center'>Address</TableHead>
                             <TableHead className=' text-center'>Customize</TableHead>
                         </TableRow>
                     </TableHeader>
@@ -42,8 +62,7 @@ const UserManegment = () => {
 
                                 <TableCell className="font-medium flex gap-3 justify-center text-center items-center">
 
-                                    <Button size={'sm'}  > remove</Button>
-                                    <Button size={'sm'}  >Make admin </Button>
+                                    <Button size={'sm'} onClick={()=> handleMakeadmin(p._id)} >Make admin </Button>
                                 </TableCell>
                             </TableRow>
                         ))}
