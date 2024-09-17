@@ -53,7 +53,10 @@ const UserOverview = () => {
                     <div className="py-5 flex flex-col gap-3">
                         {
                             myBookings?.data.length === 0 ? 'You have no complete booking history'
-                                : myBookings?.data.filter((m: any) => m.bookingStatus == 'completed').map((mb: any) => (
+                                :myBookings?.data.filter((m: any) => m.bookingStatus !== 'completed')
+                                ?
+                                 'You have no complete booking history':
+                                 myBookings?.data.filter((m: any) => m.bookingStatus == 'completed').map((mb: any) => (
                                     <Alert>
                                         <AlertTitle className="font-bold">{mb.car.name}</AlertTitle>
                                         <AlertDescription>
