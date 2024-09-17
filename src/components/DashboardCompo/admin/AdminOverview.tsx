@@ -1,12 +1,12 @@
 import { Card } from "@/components/ui/card";
 import { useGetAllUserQuery } from "@/redux/feature/auth/authApi";
-import { useGetmyAllBookingQuery } from "@/redux/feature/bookings/bookingApi";
+import { useGetallBookingQuery } from "@/redux/feature/bookings/bookingApi";
 import { useGetallavailableCarsQuery, useGetallCarsQuery } from "@/redux/feature/cars/carsApi";
 import { TruckIcon } from "@heroicons/react/24/outline";
 
 const AdminOverview = () => {
     const { data } = useGetallCarsQuery(undefined,{pollingInterval:3000})
-    const {data:allbooking} = useGetmyAllBookingQuery(undefined,{pollingInterval:1000})
+    const {data:allbooking} = useGetallBookingQuery(undefined,{pollingInterval:1000})
     const { data: availablecars } = useGetallavailableCarsQuery(undefined,{pollingInterval:3000})
     const {data:totaluser} = useGetAllUserQuery(undefined,{pollingInterval:1000})
     return (

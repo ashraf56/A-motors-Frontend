@@ -78,14 +78,17 @@ const Updatecar = ({ p }: any) => {
         
         const toast1 = toast.loading('loading...')
         try {
-            const res = await updateSingleCar(updatedcarinfo)
+            const res:any = await updateSingleCar(updatedcarinfo)
 
-            if (res) {
-                toast.success('Car info Updated', { id: toast1, duration: 2000 });
+            if (res?.error?.data?.success === false) {
+                toast.error(res?.error?.data?.message, { id: toast1, duration: 2000 });
             }
+           else{
+             toast.success(res.data.message, { id: toast1, duration: 2000 })
             
+           }
 
-        } catch (error) {
+        } catch (error) {   
             toast.error('Something wrong', { id: toast1, duration: 2000 });
         }
 

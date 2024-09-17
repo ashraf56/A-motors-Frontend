@@ -25,8 +25,7 @@ const Login = () => {
     const navigate = useNavigate()
 
     const dispatch = useAppDispatch()
-    const [loginUser, { data }] = useLoginUserMutation()
-    console.log(data);
+    const [loginUser] = useLoginUserMutation()
 
     const onsubmit: SubmitHandler<FieldValues> = async (data) => {
 
@@ -34,11 +33,11 @@ const Login = () => {
         try {
             const res = await loginUser(data).unwrap()
             const user = tokenVerify(res.data.token) as any
+         
 
-
-            if (res) {
+            if (res?.success === true) {
                 dispatch(setUser({ user: user, token: res.data.token }))
-                toast.success('Logged in', { id: toast1, duration: 2000 });
+                toast.success( res?.message, { id: toast1, duration: 2000 });
             }
 
             navigate(`/dashboard/${user?.role}/overview`)

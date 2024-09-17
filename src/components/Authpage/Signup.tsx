@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -10,7 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useSignUpUserMutation } from "@/redux/feature/auth/authApi";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 
@@ -22,9 +23,8 @@ const Signup = () => {
         reset,
         formState: { errors },
     } = useForm()
-    const [SignUpUser, { data }] = useSignUpUserMutation()
-    console.log({ data });
-
+    const [SignUpUser] = useSignUpUserMutation()
+    const navigate = useNavigate()
     const onsubmit: SubmitHandler<FieldValues> = async (data) => {
 
         const toast1 = toast.loading('loading...', { duration: 2000 })
@@ -37,15 +37,17 @@ const Signup = () => {
             address: data.address
 
         }
-        console.log({ userData });
 
         try {
-            const res = await SignUpUser(userData)
+            const res: any = await SignUpUser(userData)
 
-            if (res) {
-                toast.success('Registration completed', { id: toast1, duration: 2000 });
+
+            if (res?.data.success === true) {
+                toast.success(res?.data.message, { id: toast1, duration: 2000 });
+                navigate('/login')
+                reset()
             }
-            reset()
+            
 
         } catch (error) {
             toast.error('Registration  faild', { id: toast1, duration: 2000 });
@@ -141,7 +143,7 @@ const Signup = () => {
                             </div>
                             {errors.terms && <span className="text-sm text-red-700">
                                 {errors.terms?.message as string} </span>}
-                              
+
                         </div>
 
                         <CardFooter className="flex justify-center mt-10">
