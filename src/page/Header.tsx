@@ -99,6 +99,12 @@ const Header = () => {
                                         About us
                                     </Link>
                                 </Button>
+                                <Button variant={'ghost'} size={"default"} className="uppercase " >
+                                    <Link to={'/carlist'}
+                                    >
+                                        Car List
+                                    </Link>
+                                </Button>
                                 {user && <Button variant={'ghost'} size={"default"} className="uppercase " >
                                     <Link to={`/booking`}
                                     >
