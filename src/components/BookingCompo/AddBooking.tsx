@@ -23,19 +23,19 @@ const AddBooking = ({ book }: any) => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = async (data: any) => {
         const time = data.startTime
-        const [hr, min] = time.split(':')
-        const timeperiod = hr >= 12 ? "PM" : "AM"
+        // const [hr, min] = time.split(':')
+        // const timeperiod = hr >= 12 ? "PM" : "AM"
 
-        const formatedHr = (hr % 12) || 12;
+        // const formatedHr = (hr % 12) || 12;
 
-        const formatedStartTime = `${formatedHr}:${min} ${timeperiod}`
+        // const formatedStartTime = `${formatedHr}:${min} ${timeperiod}`
 
         const bookinginfo = {
             car: book._id,
             nid: data.nid,
             user: usersInfo!.id!,
             license: data.DrivingLicense,
-            startTime: formatedStartTime,
+            startTime: time,
             date: data.date,
             bookingStatus: 'processing',
             paymentStatus: 'pending'

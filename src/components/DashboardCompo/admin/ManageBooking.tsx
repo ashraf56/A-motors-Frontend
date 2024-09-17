@@ -52,11 +52,12 @@ const ManageBooking = () => {
       <div className="pb-5" >
         <h1 className='text-3xl font-bold'>Manage User Bookings</h1>
       </div>
-      <div className='w-full max-w-5xl mx-auto relative h-96 overflow-y-scroll'>
+      <div className='w-full max-w-full mx-auto relative h-96 overflow-y-scroll'>
         <Table>
           <TableHeader>
             <TableRow className="sticky  z-30">
               <TableHead className=""> name</TableHead>
+              <TableHead className=""> date</TableHead>
               <TableHead className="">Email</TableHead>
               <TableHead className=''>Start time</TableHead>
               <TableHead className=''>End time</TableHead>
@@ -69,6 +70,7 @@ const ManageBooking = () => {
             {allbooking?.data?.map((p: any) => (
               <TableRow key={p._id}>
                 <TableCell className="font-medium">{p.car.name}</TableCell>
+                <TableCell className="font-medium">{p.date}</TableCell>
                 <TableCell className="font-medium">{p.user.email}</TableCell>
                 <TableCell className="font-medium">{p.startTime}</TableCell>
                 <TableCell className="font-medium">{p.endTime || 'N/A'}</TableCell>
@@ -76,9 +78,9 @@ const ManageBooking = () => {
 
                 <TableCell className="font-medium flex gap-3 justify-center text-center items-center">
 
-                  <Button size={'sm'} onClick={() => handleApproveBooking(p._id)} > Approve</Button>
-                  {p.bookingStatus === 'approved' && user?.role !== 'admin' ?
-                    <Button size={'sm'} disabled>Cencle </Button> :
+                 {p.bookingStatus === 'processing'  && 
+                 <Button size={'sm'} onClick={() => handleApproveBooking(p._id)}  > Approve</Button>}
+                  {p.bookingStatus === 'approved' || p.bookingStatus === 'completed'   || user?.role !== 'admin'  &&        
                     <Button size={'sm'} onClick={() => handleCencleBooking(p._id)}>Cencle </Button>
                   }
                 </TableCell>

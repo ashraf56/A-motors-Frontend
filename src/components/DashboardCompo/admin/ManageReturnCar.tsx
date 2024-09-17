@@ -26,11 +26,12 @@ const ManageReturnCar = () => {
             <div className="pb-5" >
                 <h1 className='text-3xl font-bold'>Manage Return car </h1>
             </div>
-            <div className='w-full max-w-5xl mx-auto relative h-96 overflow-y-scroll'>
+            <div className='w-full max-w-full mx-auto relative h-96 overflow-y-scroll'>
                 <Table>
                     <TableHeader>
                         <TableRow className="sticky  z-30">
                             <TableHead className=""> name</TableHead>
+                            <TableHead className=""> Date</TableHead>
                             <TableHead className="">Email</TableHead>
                             <TableHead className="">Car status</TableHead>
                             <TableHead className=''>Start time</TableHead>
@@ -41,9 +42,10 @@ const ManageReturnCar = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody className="-z-30">
-                        {allbooking?.data?.map((p: any) => (
+                        {allbooking?.data?.filter((ab:any)=> ab.bookingStatus != 'processing').map((p: any) => (
                             <TableRow key={p._id}>
                                 <TableCell className="font-medium">{p.car.name}</TableCell>
+                                <TableCell className="font-medium">{p.date}</TableCell>
                                 <TableCell className="font-medium">{p.user.email}</TableCell>
                                 <TableCell className="font-medium">{p.car.status}</TableCell>
                                 <TableCell className="font-medium">{p.startTime}</TableCell>

@@ -16,21 +16,20 @@ import { useForm } from "react-hook-form";
 
 import { toast } from "sonner";
 const Returncar = ({ book }: any) => {
-    // const usersInfo:any = useAppSelector(useCurrentUser)
     const [returnCar] = useReturnCarMutation()
     const { register, handleSubmit, reset , formState: { errors } } = useForm();
     const onSubmit = async (data: any) => {
         const time = data.endTime
-        const [hr, min] = time.split(':')
-        const timeperiod = hr >= 12 ? "PM" : "AM"
+        // const [hr, min] = time.split(':')
+        // const timeperiod = hr >= 12 ? "PM" : "AM"
 
-        const formatedHr = (hr % 12) || 12;
+        // const formatedHr = (hr % 12) || 12;
 
-        const formatedEndTime = `${formatedHr}:${min} ${timeperiod}`
+        // const formatedEndTime = `${formatedHr}:${min} ${timeperiod}`
 
         const returnCArinfo = {
             bookingId: book._id,
-            endTime: formatedEndTime,
+            endTime: time,
         }
 
 

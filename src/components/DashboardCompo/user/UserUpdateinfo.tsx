@@ -13,36 +13,48 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useGetUpdateUserInfoMutation } from "@/redux/feature/auth/authApi";
 import { PencilIcon } from "@heroicons/react/24/outline";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 import { toast } from "sonner";
 const UserUpdateinfo = ({ userinfo }: any) => {
     // const usersInfo:any = useAppSelector(useCurrentUser)
 
-    const { register, handleSubmit, reset   } = useForm();
- const [ getUpdateUserInfo] = useGetUpdateUserInfoMutation()
+    const { register, handleSubmit, reset, setValue } = useForm();
+    useEffect(() => {
+        if (userinfo) {
+            setValue('name', userinfo.name);
+            setValue('email', userinfo.email);
+            setValue('phone', userinfo.phone);
+            setValue('address', userinfo.address);
+
+        }
+    }, [userinfo, setValue]);
+
+
+    const [getUpdateUserInfo] = useGetUpdateUserInfoMutation()
     const onSubmit = async (data: any) => {
-        
+
         const updatedUserinfo = {
             id: userinfo._id,
             info: {
                 name: data.name,
-                email:data.email,
-                address:data.adress,
-                phone:data.phone 
+                email: data.email,
+                address: data.address,
+                phone: data.phone
             }
         }
-        const loading = toast.loading('loading...', {duration:2000})
+        const loading = toast.loading('loading...', { duration: 2000 })
         try {
-            const res:any = await getUpdateUserInfo(updatedUserinfo)
-           
+            const res: any = await getUpdateUserInfo(updatedUserinfo)
+
             if (res?.data.success === true) {
-                toast.success( res?.data.message, { id: loading , duration:2000})
-                  reset()
+                toast.success(res?.data.message, { id: loading, duration: 2000 })
+                reset()
             }
-           
+
         } catch (error) {
-            toast.error('Something error', { id: loading ,duration:2000})
+            toast.error('Something error', { id: loading, duration: 2000 })
         }
 
 
@@ -51,7 +63,7 @@ const UserUpdateinfo = ({ userinfo }: any) => {
         <div>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button size={'icon'} variant={'outline'} className="rounded-full" ><PencilIcon className="w-5 h-5"/></Button>
+                    <Button size={'icon'} variant={'outline'} className="rounded-full" ><PencilIcon className="w-5 h-5" /></Button>
                 </DialogTrigger>
 
                 <DialogContent className="sm:max-w-3xl font-CustomFont">
@@ -67,31 +79,31 @@ const UserUpdateinfo = ({ userinfo }: any) => {
                                     name
                                 </Label>
                                 <Input type="text" defaultValue={userinfo.name} {...register('name')} className="col-span-3" />
-                                
+
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="name" className="text-right">
-                                   Email
+                                    Email
                                 </Label>
                                 <Input type="email" defaultValue={userinfo.email} {...register('email')} className="col-span-3" />
-                                
+
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="name" className="text-right">
-                                Phone 
+                                    Phone
                                 </Label>
                                 <Input type="number" defaultValue={userinfo.phone} {...register('phone')} className="col-span-3" />
-                                
+
                             </div>
                             <div className="grid grid-cols-4 items-center gap-4">
                                 <Label htmlFor="name" className="text-right">
-                                Address 
+                                    Address
                                 </Label>
                                 <Input type="text" defaultValue={userinfo.address} {...register('address')} className="col-span-3" />
-                                
+
                             </div>
 
-                          
+
 
 
 

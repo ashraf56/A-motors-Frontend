@@ -77,7 +77,7 @@ const BookingDetails = () => {
 
                             Comprehensive Coverage: Provides full coverage for the rental vehicle, including damage, theft, and third-party liability, ensuring a worry-free journey.
 
-                            Premium Coverage: Our most extensive option, offering zero-deductible protection, plus coverage for personal injury, property damage, and travel interruptions.
+                           
 
 
                         </p>
