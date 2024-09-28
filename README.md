@@ -6,12 +6,13 @@
 A-Motors is a sleek and user-friendly car rental reservation system designed to streamline the booking process for customers. The platform allows users to search for available vehicles, view detailed information about rental options, and make hassle-free reservations. With a modern interface and intuitive features, A-Motors ensures a smooth user experience, providing essential details like insurance coverage, cancellation policies, and competitive rental pricing. The project demonstrates proficiency in frontend development, using responsive design principles to create a visually appealing and functional web application.
 
 ## features:
-- There are 2 role in Admin and User
-- admin can manage CRUD of car
-- Admin can track rent history
-- user can create account
-- user can book muliple car.
-- user can see their booking history.
+- Powerfully segmented into Admin and User roles for efficient access management.
+- Admins can dynamically control and manage car listings with full CRUD operations.
+- Admins can effectively track and monitor rental histories for comprehensive oversight.
+- Users can effortlessly create accounts for personalized access and interactions.
+- Users can conveniently book multiple cars for a seamless rental experience.
+- Users can instantly access and review their detailed booking history for easy tracking.
+
 
 ## technology used  
 - typescript

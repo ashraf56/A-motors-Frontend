@@ -1,5 +1,6 @@
 import imgs from '@/assets/Hero1.jpg'
 import { Button } from '../ui/button';
+import { Link } from 'react-router-dom';
 const Hero = () => {
     return (
         <div className='w-full  flex flex-col  h-[70vh] items-center   justify-center  font-CustomFont' style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.5)),url(${imgs})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
@@ -10,7 +11,7 @@ const Hero = () => {
 
                 <div className='flex w-full max-w-3xl mx-auto bg-white h-14 justify-between px-2 gap-2   items-center'>
                     <input type="text" placeholder="Search now" className='bg-white h-12 w-full outline-none text-black  px-2'  />
-                    <Button size={'default'} className=' bg-[#BC274B] h-12 font-CustomFont' >Book now</Button>
+                   <Link to={'/carlist'}> <Button size={'default'} className=' bg-[#BC274B] h-12 font-CustomFont' >Book now</Button></Link>
                 </div>
 
 
